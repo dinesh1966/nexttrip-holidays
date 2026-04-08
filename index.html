@@ -1,0 +1,3286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Next Trip Holidays Tours & Travel — Explore India & Beyond</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ============================================================
+   RESET & ROOT VARIABLES
+   ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --orange: #E08403;
+            --orange-light: #FF9F1A;
+            --orange-pale: #FFF5E6;
+            --orange-dark: #B36A02;
+            --white: #FFFFFF;
+            --dark: #1A1A1A;
+            --gray: #6B7280;
+            --light-bg: #F9F9F7;
+            --border: #F0E8E0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        button {
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+        }
+
+        /* ============================================================
+   NAVIGATION
+   ============================================================ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
+            padding: 0 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo span {
+            color: var(--dark);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--dark);
+            letter-spacing: 0.4px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--orange);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(224, 132, 3, 0.3);
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.4),
+                transparent
+            );
+            transition: all 0.6s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(224, 132, 3, 0.5);
+            background: linear-gradient(135deg, var(--orange-light) 0%, var(--orange) 100%);
+        }
+
+        .nav-cta:hover::before {
+            left: 100%;
+        }
+
+        .nav-cta:active {
+            transform: translateY(0) scale(0.98);
+            box-shadow: 0 5px 15px rgba(224, 132, 3, 0.4);
+        }
+
+        /* ============================================================
+   HERO
+   ============================================================ */
+        .hero {
+            margin-top: 70px;
+            min-height: 92vh;
+            background: linear-gradient(rgba(26, 10, 0, 0.4), rgba(40, 15, 0, 0.7)), url('images/hero_bg_1775546327977.png') center/cover no-repeat;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 50% 50%, rgba(232, 101, 10, 0.18) 0%, transparent 60%),
+                radial-gradient(circle at 50% 20%, rgba(255, 140, 56, 0.12) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 60px 20px;
+            max-width: 900px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(232, 101, 10, 0.4);
+            border: 1px solid rgba(232, 101, 10, 0.6);
+            color: #FFB87A;
+            padding: 7px 18px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+            backdrop-filter: blur(4px);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 66px;
+            font-weight: 900;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 span {
+            color: var(--orange-light);
+        }
+
+        .hero p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 17px;
+            line-height: 1.75;
+            margin-bottom: 38px;
+            max-width: 600px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: var(--orange);
+            color: white;
+            border: none;
+            padding: 16px 34px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: var(--orange-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            padding: 16px 34px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+            backdrop-filter: blur(4px);
+        }
+
+        .btn-secondary:hover {
+            border-color: white;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 44px;
+            margin-top: 52px;
+            justify-content: center;
+        }
+
+        .stat-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 34px;
+            font-weight: 900;
+            color: var(--orange-light);
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.55);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 32px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .scroll-arrow {
+            width: 30px;
+            height: 30px;
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            margin: 10px auto 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(7px);
+            }
+        }
+
+        /* ============================================================
+   SEARCH BAR
+   ============================================================ */
+        .search-bar {
+            background: white;
+            border-radius: 20px;
+            padding: 26px 32px;
+            margin: -45px 60px 0;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.13);
+            display: flex;
+            gap: 20px;
+            align-items: flex-end;
+            flex-wrap: wrap;
+        }
+
+        .search-group {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .search-group label {
+            display: block;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--orange);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+        }
+
+        .search-group select,
+        .search-group input {
+            width: 100%;
+            border: none;
+            border-bottom: 1.5px solid #E8E0D8;
+            padding: 9px 0;
+            font-size: 14px;
+            background: transparent;
+            outline: none;
+            color: var(--dark);
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.2s;
+        }
+
+        .search-group select:focus,
+        .search-group input:focus {
+            border-bottom-color: var(--orange);
+        }
+
+        .search-btn {
+            background: var(--orange);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+
+        .search-btn:hover {
+            background: var(--orange-light);
+        }
+
+        /* ============================================================
+   SECTIONS COMMON
+   ============================================================ */
+        section {
+            padding: 88px 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: var(--orange-pale);
+            color: var(--orange);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 44px;
+            font-weight: 900;
+            line-height: 1.2;
+            color: var(--dark);
+            margin-bottom: 12px;
+        }
+
+        .section-title span {
+            color: var(--orange);
+        }
+
+        .section-sub {
+            color: var(--gray);
+            font-size: 15px;
+            line-height: 1.65;
+            max-width: 500px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 52px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .view-all {
+            color: var(--orange);
+            font-size: 13px;
+            font-weight: 600;
+            border: 1.5px solid var(--orange);
+            padding: 11px 24px;
+            border-radius: 22px;
+            background: transparent;
+            transition: all 0.2s;
+        }
+
+        .view-all:hover {
+            background: var(--orange);
+            color: white;
+        }
+
+        /* ============================================================
+   ABOUT US
+   ============================================================ */
+        .about-section {
+            background: white;
+            padding: 100px 60px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-img-box {
+            position: relative;
+        }
+
+        .about-img-main {
+            border-radius: 24px;
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-stats-overlay {
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            background: var(--orange);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(224, 132, 3, 0.3);
+            text-align: center;
+            min-width: 180px;
+        }
+
+        .about-stats-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .about-stats-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 8px;
+            opacity: 0.9;
+        }
+
+        .about-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+
+        .about-content p {
+            color: var(--gray);
+            font-size: 17px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .af-card {
+            background: var(--orange-pale);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(224, 132, 3, 0.1);
+        }
+
+        .af-icon {
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: var(--orange);
+        }
+
+        .af-title {
+            font-weight: 700;
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
+
+        .af-desc {
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        /* ============================================================
+   NATIONAL DESTINATIONS
+   ============================================================ */
+        .places-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 44px;
+            justify-content: center;
+        }
+
+        .place-pill {
+            background: #fff;
+            border-radius: 50px;
+            padding: 10px 22px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .place-pill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(224, 132, 3, 0.15);
+            border-color: var(--orange);
+            background: var(--orange-pale);
+        }
+
+        .pill-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark);
+            position: relative;
+            z-index: 2;
+        }
+
+        .dest-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        @keyframes electricPulse {
+            0%   { box-shadow: 0 0 8px rgba(224,132,3,0.4), 0 0 20px rgba(224,132,3,0.2), 0 0 40px rgba(224,132,3,0.1); }
+            50%  { box-shadow: 0 0 16px rgba(255,159,26,0.8), 0 0 40px rgba(255,159,26,0.4), 0 0 70px rgba(255,159,26,0.2); }
+            100% { box-shadow: 0 0 8px rgba(224,132,3,0.4), 0 0 20px rgba(224,132,3,0.2), 0 0 40px rgba(224,132,3,0.1); }
+        }
+
+        @keyframes rotateGradient {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .dest-card {
+            border-radius: 18px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dest-card::after {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--orange), var(--orange-light), #fff700, var(--orange));
+            background-size: 300% 300%;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.35s ease;
+            animation: rotateGradient 3s linear infinite;
+        }
+
+        .dest-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            animation: electricPulse 1.5s ease-in-out infinite;
+        }
+
+        .dest-card:hover::after {
+            opacity: 1;
+        }
+
+        .dest-img {
+            height: 250px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: transform 0.4s;
+        }
+
+        .dest-card:hover .dest-img {
+            transform: scale(1.04);
+        }
+
+        .dest-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.78) 0%, transparent 55%);
+        }
+
+        .dest-emoji {
+            font-size: 0;
+            opacity: 0.85;
+            position: relative;
+            z-index: 1;
+        }
+
+        .dest-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 22px;
+        }
+
+        .dest-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .dest-count {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.72);
+        }
+
+        .dest-price {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--orange);
+            color: white;
+            padding: 6px 13px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            z-index: 2;
+        }
+
+        .dest-book {
+            position: absolute;
+            bottom: 22px;
+            right: 22px;
+            background: white;
+            color: var(--orange);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 18px;
+            font-size: 12px;
+            font-weight: 700;
+            opacity: 0;
+            transition: opacity 0.25s;
+        }
+
+        .dest-card:hover .dest-book {
+            opacity: 1;
+        }
+
+        /* Card backgrounds */
+        .bg-kashmir {
+            background: url('images/kashmir_tour_1775545905366.png') center/cover;
+        }
+
+        .bg-kerala {
+            background: url('images/kerala_tour_1775545920618.png') center/cover;
+        }
+
+        .bg-rajasthan {
+            background: url('images/rajasthan_tour_1775545936775.png') center/cover;
+        }
+
+        .bg-goa {
+            background: url('images/goa_tour_1775545953325.png') center/cover;
+        }
+
+        /* ============================================================
+   PACKAGE CALCULATOR
+   ============================================================ */
+        .calc-section {
+            background: var(--light-bg);
+        }
+
+        .calculator {
+            background: linear-gradient(135deg, #FFF8F2, #FFF3E8);
+            border-radius: 26px;
+            padding: 52px;
+            border: 1px solid #F0D8C0;
+        }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .calc-form {
+            display: grid;
+            gap: 22px;
+        }
+
+        .calc-field label {
+            display: block;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--orange);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .calc-field select,
+        .calc-field input {
+            width: 100%;
+            border: 1.5px solid #E8D8C8;
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-size: 14px;
+            background: white;
+            outline: none;
+            color: var(--dark);
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.2s;
+        }
+
+        .calc-field select:focus,
+        .calc-field input:focus {
+            border-color: var(--orange);
+        }
+
+        .calc-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .price-box {
+            background: var(--orange);
+            border-radius: 22px;
+            padding: 40px 36px;
+            text-align: center;
+            color: white;
+        }
+
+        .price-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.82;
+            margin-bottom: 8px;
+        }
+
+        .price-amount {
+            font-family: 'Playfair Display', serif;
+            font-size: 54px;
+            font-weight: 900;
+            margin: 14px 0 6px;
+            letter-spacing: -1px;
+        }
+
+        .price-note {
+            font-size: 12px;
+            opacity: 0.68;
+            margin-bottom: 26px;
+        }
+
+        .price-btn {
+            background: white;
+            color: var(--orange);
+            border: none;
+            padding: 15px 32px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 700;
+            width: 100%;
+            transition: all 0.2s;
+        }
+
+        .price-btn:hover {
+            background: var(--orange-pale);
+        }
+
+        .price-breakdown {
+            margin-top: 22px;
+            text-align: left;
+        }
+
+        .pb-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            padding: 7px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .pb-row:last-child {
+            border: none;
+            font-weight: 700;
+            font-size: 14px;
+            color: white;
+        }
+
+        /* ============================================================
+   INTERNATIONAL TOURS
+   ============================================================ */
+        .intl-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 26px;
+        }
+
+        .intl-card {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1.5px solid var(--border);
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .intl-card::after {
+            content: '';
+            position: absolute;
+            inset: -1.5px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, var(--orange), var(--orange-light), #fff700, var(--orange));
+            background-size: 300% 300%;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.35s ease;
+            animation: rotateGradient 3s linear infinite;
+        }
+
+        .intl-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: transparent;
+            animation: electricPulse 1.5s ease-in-out infinite;
+        }
+
+        .intl-card:hover::after {
+            opacity: 1;
+        }
+
+        .intl-img {
+            height: 210px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0;
+        }
+
+        .intl-body {
+            padding: 22px;
+        }
+
+        .intl-country {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--orange);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .intl-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .intl-features {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+
+        .feature-tag {
+            background: var(--orange-pale);
+            color: var(--orange);
+            padding: 4px 11px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .intl-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .intl-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--orange);
+        }
+
+        .intl-days {
+            font-size: 12px;
+            color: var(--gray);
+            margin-top: 2px;
+        }
+
+        .book-btn {
+            background: var(--orange);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+            cursor: pointer;
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+
+        .view-pkg-btn {
+            background: white;
+            color: var(--orange);
+            border: 1px solid var(--orange);
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+            cursor: pointer;
+            width: 100%;
+            display: block;
+            text-align: center;
+            margin-bottom: 6px;
+        }
+
+        .book-btn:hover {
+            background: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        .view-pkg-btn:hover {
+            background: var(--orange-pale);
+            transform: translateY(-2px);
+        }
+
+        .card-btns {
+            display: flex;
+            flex-direction: column;
+            min-width: 130px;
+        }
+
+        /* ============================================================
+   FLIGHT CHECKER
+   ============================================================ */
+        .flight-section {
+            background: #1A1A1A;
+            padding: 88px 60px;
+        }
+
+        .flight-section .section-title {
+            color: white;
+        }
+
+        .flight-section .section-sub {
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        .flight-section .section-tag {
+            background: rgba(232, 101, 10, 0.2);
+            color: #FF9A4A;
+        }
+
+        .flight-tabs {
+            display: flex;
+            gap: 4px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            padding: 5px;
+            width: fit-content;
+            margin-bottom: 32px;
+        }
+
+        .ftab {
+            background: transparent;
+            color: rgba(255, 255, 255, 0.55);
+            border: none;
+            padding: 10px 24px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .ftab.active {
+            background: var(--orange);
+            color: white;
+            font-weight: 600;
+        }
+
+        .flight-form {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 18px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: grid;
+            grid-template-columns: repeat(5, 1fr) auto;
+            gap: 18px;
+            align-items: flex-end;
+        }
+
+        .f-field label {
+            display: block;
+            font-size: 10px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.45);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+        }
+
+        .f-field input,
+        .f-field select {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 14px;
+            color: white;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.2s;
+        }
+
+        .f-field input:focus,
+        .f-field select:focus {
+            border-color: var(--orange);
+        }
+
+        .f-field select option {
+            background: #222;
+        }
+
+        .search-flight-btn {
+            background: var(--orange);
+            color: white;
+            border: none;
+            padding: 13px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .search-flight-btn:hover {
+            background: var(--orange-light);
+        }
+
+        .flight-results {
+            margin-top: 24px;
+            display: grid;
+            gap: 14px;
+        }
+
+        .flight-card {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1.5px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 22px 26px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-wrap: wrap;
+            gap: 14px;
+            position: relative;
+        }
+
+        .flight-card::after {
+            content: '';
+            position: absolute;
+            inset: -1.5px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, var(--orange), var(--orange-light), #fff700, var(--orange));
+            background-size: 300% 300%;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.35s ease;
+            animation: rotateGradient 3s linear infinite;
+        }
+
+        .flight-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-4px);
+            border-color: transparent;
+            animation: electricPulse 1.5s ease-in-out infinite;
+        }
+
+        .flight-card:hover::after {
+            opacity: 1;
+        }
+
+        .airline {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .airline-logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .airline-name {
+            font-size: 14px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .airline-num {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.45);
+            margin-top: 2px;
+        }
+
+        .flight-route {
+            text-align: center;
+        }
+
+        .route-time {
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 1px;
+        }
+
+        .route-code {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.45);
+            margin-top: 3px;
+        }
+
+        .route-line {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 7px 0;
+        }
+
+        .route-dash {
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .route-dur {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.45);
+            white-space: nowrap;
+        }
+
+        .route-stops {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.4);
+            text-align: center;
+        }
+
+        .flight-price-wrap {
+            text-align: right;
+        }
+
+        .flight-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: #FF9A4A;
+        }
+
+        .flight-price-sub {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.45);
+            margin-bottom: 10px;
+        }
+
+        .book-flight {
+            background: var(--orange);
+            color: white;
+            border: none;
+            padding: 9px 22px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .book-flight:hover {
+            background: var(--orange-light);
+        }
+
+        /* ============================================================
+   GALLERY
+   ============================================================ */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-rows: 230px 230px;
+            gap: 16px;
+        }
+
+        .g-item {
+            border-radius: 18px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .g-item:first-child {
+            grid-row: span 2;
+        }
+
+        .g-photo {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0;
+            transition: transform 0.4s;
+        }
+
+        .g-item:hover .g-photo {
+            transform: scale(1.07);
+        }
+
+        .g-label {
+            position: absolute;
+            bottom: 14px;
+            left: 14px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            backdrop-filter: blur(4px);
+        }
+
+        .g1 {
+            background: url('images/kashmir_tour_1775545905366.png') center/cover;
+        }
+
+        .g2 {
+            background: url('images/kerala_tour_1775545920618.png') center/cover;
+        }
+
+        .g3 {
+            background: url('images/rajasthan_tour_1775545936775.png') center/cover;
+        }
+
+        .g4 {
+            background: url('images/munnar_tour_1775546087248.png') center/cover;
+        }
+
+        .g5 {
+            background: url('images/goa_tour_1775545953325.png') center/cover;
+        }
+
+        /* ============================================================
+   TESTIMONIALS
+   ============================================================ */
+        .testi-section {
+            background: var(--light-bg);
+        }
+
+        .testi-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 26px;
+        }
+
+        .testi-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .testi-card:hover {
+            box-shadow: 0 14px 36px rgba(232, 101, 10, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .stars {
+            color: var(--orange);
+            font-size: 18px;
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+        }
+
+        .testi-text {
+            font-size: 14px;
+            line-height: 1.75;
+            color: var(--gray);
+            margin-bottom: 22px;
+            font-style: italic;
+        }
+
+        .testi-author {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .author-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--orange);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .author-name {
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--dark);
+        }
+
+        .author-trip {
+            font-size: 12px;
+            color: var(--orange);
+            margin-top: 2px;
+        }
+
+        /* ============================================================
+   WHY CHOOSE US
+   ============================================================ */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .why-card {
+            text-align: center;
+            padding: 36px 24px;
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .why-card:hover {
+            border-color: var(--orange);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(232, 101, 10, 0.1);
+        }
+
+        .why-icon {
+            font-size: 44px;
+            margin-bottom: 18px;
+        }
+
+        .why-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .why-desc {
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.65;
+        }
+
+        /* ============================================================
+   NEWSLETTER
+   ============================================================ */
+        .newsletter {
+            background: linear-gradient(135deg, var(--orange-dark), var(--orange), var(--orange-light));
+            padding: 72px 60px;
+            text-align: center;
+            color: white;
+        }
+
+        .newsletter h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 12px;
+        }
+
+        .newsletter p {
+            font-size: 16px;
+            opacity: 0.85;
+            margin-bottom: 36px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+            max-width: 460px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            border: none;
+            border-radius: 12px;
+            padding: 15px 20px;
+            font-size: 14px;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .newsletter-form button {
+            background: var(--dark);
+            color: white;
+            border: none;
+            padding: 15px 28px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+
+        .newsletter-form button:hover {
+            background: #333;
+        }
+
+        /* ============================================================
+   FOOTER
+   ============================================================ */
+        footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.65);
+            padding: 70px 60px 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 52px;
+            margin-bottom: 52px;
+        }
+
+        .footer-brand .logo {
+            font-size: 26px;
+        }
+
+        .footer-brand p {
+            font-size: 13px;
+            line-height: 1.75;
+            margin: 16px 0 22px;
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        .footer-contact {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.45);
+            line-height: 2;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .social-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .social-btn:hover {
+            background: var(--orange);
+        }
+
+        .footer-col h4 {
+            font-family: 'Playfair Display', serif;
+            color: white;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+
+        .footer-col li a {
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 13px;
+            transition: color 0.2s;
+        }
+
+        .footer-col li a:hover {
+            color: var(--orange);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* ============================================================
+   BOOKING MODAL
+   ============================================================ */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 26px;
+            padding: 44px;
+            max-width: 580px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalIn 0.3s ease;
+        }
+
+        @keyframes modalIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 22px;
+            cursor: pointer;
+            color: var(--gray);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .modal-close:hover {
+            background: var(--orange-pale);
+            color: var(--orange);
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            font-weight: 900;
+            margin-bottom: 6px;
+        }
+
+        .modal-sub {
+            font-size: 14px;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        .form-grid {
+            display: grid;
+            gap: 18px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-field label {
+            display: block;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--orange);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+        }
+
+        .form-field input,
+        .form-field select,
+        .form-field textarea {
+            width: 100%;
+            border: 1.5px solid #E8E0D8;
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: 14px;
+            outline: none;
+            color: var(--dark);
+            font-family: 'Inter', sans-serif;
+            transition: border-color 0.2s;
+        }
+
+        .form-field input:focus,
+        .form-field select:focus,
+        .form-field textarea:focus {
+            border-color: var(--orange);
+        }
+
+        .form-field textarea {
+            height: 95px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: var(--orange);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 700;
+            width: 100%;
+            margin-top: 6px;
+            transition: background 0.2s;
+        }
+
+        .submit-btn:hover {
+            background: var(--orange-light);
+        }
+
+        .success-msg {
+            display: none;
+            text-align: center;
+            padding: 30px 0 10px;
+        }
+
+        .success-icon {
+            font-size: 60px;
+            margin-bottom: 16px;
+        }
+
+        .success-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .success-sub {
+            color: var(--gray);
+            font-size: 15px;
+            line-height: 1.65;
+        }
+
+        /* ============================================================
+   LIVE SIDEBAR NOTIFICATIONS
+   ============================================================ */
+        .live-sidebar {
+            position: fixed;
+            left: 20px;
+            bottom: 110px;
+            z-index: 900;
+            width: 252px;
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            pointer-events: none;
+        }
+
+        .live-card {
+            background: white;
+            border-radius: 14px;
+            padding: 13px 15px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.13);
+            border-left: 3.5px solid var(--orange);
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            animation: slideIn 0.4s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .live-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--orange);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .live-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .live-name {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--dark);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .live-action {
+            font-size: 11px;
+            color: var(--gray);
+        }
+
+        .live-time {
+            font-size: 10px;
+            color: var(--orange);
+            margin-top: 2px;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22C55E;
+            flex-shrink: 0;
+        }
+
+        /* ============================================================
+   FLOATING BUTTONS
+   ============================================================ */
+        .float-btns {
+            position: fixed;
+            right: 22px;
+            bottom: 32px;
+            z-index: 900;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .float-btn {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .float-btns i {
+            color: white !important;
+            font-size: 26px;
+        }
+
+        .float-btn:hover {
+            transform: scale(1.12);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .float-wa {
+            background: #25D366;
+        }
+
+        .float-ig {
+            background: linear-gradient(135deg, #833AB4, #FD1D1D, #F77737);
+        }
+
+        .float-logo {
+            background: white;
+            padding: 10px;
+        }
+
+        .float-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .float-label {
+            position: absolute;
+            right: 62px;
+            background: var(--dark);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .float-btn:hover .float-label {
+            opacity: 1;
+        }
+
+        .float-btn-wrap {
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================
+     NAVIGATION
+     ============================ -->
+    <nav>
+        <div class="logo">
+            <img src="https://res.cloudinary.com/drkgkgiat/image/upload/q_auto/f_auto/v1775567539/Next_TRip_Final_Logo_Square_Size_-_Copy-removebg-preview_bsfsev.png"
+                alt="Next Trip Logo" style="height: 60px; width: auto;">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#national">National</a></li>
+            <li><a href="#international">International</a></li>
+            <li><a href="#flights">Flights</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="nav-cta" onclick="openBooking('Custom Tour Package')">✦ Book Now</button>
+    </nav>
+
+    <!-- ============================
+     HERO SECTION
+     ============================ -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">✦ India's Premier Travel Partner Since 2009</div>
+            <h1 class="playfair">Discover the <span>World's</span><br>Hidden Wonders</h1>
+            <p>From the golden ghats of Varanasi to the glaciers of Ladakh — we craft journeys that transform your soul.
+                90+ national destinations & 40+ international packages, all from Coimbatore.</p>
+            <div class="hero-btns">
+                <button class="btn-primary" onclick="openBooking('Dream Vacation Package')">Plan My Trip ✦</button>
+                <button class="btn-secondary"
+                    onclick="document.getElementById('flights').scrollIntoView({behavior:'smooth'})">Check Flights
+                    ✈</button>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-num playfair counter" data-target="90" data-suffix="+">0+</div>
+                    <div class="stat-label">Destinations</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num playfair counter" data-target="12" data-suffix="K+">0K+</div>
+                    <div class="stat-label">Happy Travelers</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num playfair counter" data-target="15" data-suffix="">0</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-num playfair counter" data-target="4.9" data-suffix="★" data-decimals="1">0.0★
+                    </div>
+                    <div class="stat-label">Rating</div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-hint">
+            Scroll to Explore
+            <div class="scroll-arrow">↓</div>
+        </div>
+    </section>
+
+    <!-- ============================
+     SEARCH BAR
+     ============================ -->
+    <div class="search-bar">
+        <div class="search-group">
+            <label>Tour Type</label>
+            <select>
+                <option>National Tours</option>
+                <option>International Tours</option>
+                <option>Honeymoon Special</option>
+                <option>Adventure Tours</option>
+                <option>Pilgrimage Tours</option>
+                <option>Corporate Tours</option>
+            </select>
+        </div>
+        <div class="search-group">
+            <label>Departing From</label>
+            <select>
+                <option>Coimbatore</option>
+                <option>Chennai</option>
+                <option>Bengaluru</option>
+                <option>Mumbai</option>
+                <option>Delhi</option>
+                <option>Hyderabad</option>
+                <option>Madurai</option>
+            </select>
+        </div>
+        <div class="search-group">
+            <label>Destination</label>
+            <select>
+                <option>Anywhere in India</option>
+                <option>Kerala</option>
+                <option>Rajasthan</option>
+                <option>Goa</option>
+                <option>Himachal Pradesh</option>
+                <option>Kashmir</option>
+                <option>Ladakh</option>
+                <option>Thailand</option>
+                <option>Dubai</option>
+                <option>Singapore</option>
+                <option>Bali</option>
+                <option>Maldives</option>
+            </select>
+        </div>
+        <div class="search-group">
+            <label>Travel Date</label>
+            <input type="date" id="searchDate">
+        </div>
+        <div class="search-group">
+            <label>Travelers</label>
+            <select>
+                <option>1 Adult</option>
+                <option>2 Adults</option>
+                <option>2 Adults + 1 Child</option>
+                <option>2 Adults + 2 Children</option>
+                <option>Group (5+)</option>
+                <option>Group (10+)</option>
+            </select>
+        </div>
+        <button class="search-btn" onclick="openBooking('Search Package')">🔍 Search Packages</button>
+    </div>
+
+    <!-- ============================
+     ABOUT US SECTION
+     ============================ -->
+    <section class="about-section" id="about">
+        <div class="about-grid">
+            <div class="about-img-box">
+                <img src="images/hero_bg_1775546327977.png" alt="Travel Company" class="about-img-main">
+                <div class="about-stats-overlay">
+                    <div class="about-stats-num">15+</div>
+                    <div class="about-stats-label">Years of Excellence</div>
+                </div>
+            </div>
+            <div class="about-content">
+                <div class="section-tag">Since 2009</div>
+                <h2>Next Trip Holidays: <br>Exploring <span>The Extraordinary</span></h2>
+                <p>Born from a passion for storytelling and global exploration, Next Trip Holidays has grown from a
+                    Coimbatore boutique agency into India’s most trusted travel partner. For 15 years, we’ve dedicated
+                    ourselves to crafting journeys that don't just show you a place, but immerse you in its soul.</p>
+                <p>Whether it's the peaceful backwaters of Kerala or the futuristic skylines of Dubai, our mission is to
+                    provide seamless, luxury-grade travel experiences at the best possible value.</p>
+                <div class="about-features">
+                    <div class="af-card">
+                        <div class="af-icon"><i class="fas fa-route"></i></div>
+                        <div class="af-title">Custom Itineraries</div>
+                        <div class="af-desc">Every traveler is unique. We tailor each destination to your interests.
+                        </div>
+                    </div>
+                    <div class="af-card">
+                        <div class="af-icon"><i class="fas fa-headset"></i></div>
+                        <div class="af-title">24/7 Concierge</div>
+                        <div class="af-desc">Our experts are alive and available around the clock, worldwide.</div>
+                    </div>
+                    <div class="af-card">
+                        <div class="af-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div class="af-title">Fully Insured</div>
+                        <div class="af-desc">Travel with peace of mind. Every trip includes comprehensive protection.
+                        </div>
+                    </div>
+                    <div class="af-card">
+                        <div class="af-icon"><i class="fas fa-award"></i></div>
+                        <div class="af-title">Best Value</div>
+                        <div class="af-desc">Experience luxury without the premium price tag. Guaranteed.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+     NATIONAL DESTINATIONS
+     ============================ -->
+    <section id="national">
+        <div class="section-header">
+            <div>
+                <div class="section-tag">🇮🇳 Explore India</div>
+                <div class="section-title playfair">90+ <span>Breathtaking</span><br>Destinations</div>
+                <div class="section-sub">Discover India's incredible
+                    diversity with our handcrafted packages.</div>
+            </div>
+            <button class="view-all" onclick="window.location.href='destinations.html'">View All 90+ Places →</button>
+        </div>
+
+        <!-- All 36 Place Pills -->
+
+
+        <!-- Featured Destination Cards -->
+        <div class="intl-grid" style="grid-template-columns: repeat(4, 1fr);">
+            <div class="intl-card" onclick="showNatModal('Kashmir')">
+                <div class="intl-img bg-kashmir">🏔️</div>
+                <div class="intl-body">
+                    <div class="intl-country">North India</div>
+                    <div class="intl-name playfair">Kashmir Paradise</div>
+                    <div class="intl-features">
+                        <span class="feature-tag">Snow</span>
+                        <span class="feature-tag">Mountains</span>
+                        <span class="feature-tag">Houseboat</span>
+                    </div>
+                    <div class="intl-footer">
+                        <div>
+                            <div class="intl-price">₹28,999</div>
+                            <div class="intl-days">6N/7D · From CBE</div>
+                        </div>
+                        <div class="card-btns">
+                            <button class="view-pkg-btn" onclick="event.stopPropagation();showNatModal('Kashmir')">View
+                                Package</button>
+                            <button class="book-btn"
+                                onclick="event.stopPropagation();openBooking('Kashmir Paradise Tour')">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="intl-card" onclick="window.location.href='kerala.html'">
+                <div class="intl-img bg-kerala">🌴</div>
+                <div class="intl-body">
+                    <div class="intl-country">South India</div>
+                    <div class="intl-name playfair">Kerala Backwaters</div>
+                    <div class="intl-features">
+                        <span class="feature-tag">Nature</span>
+                        <span class="feature-tag">Houseboat</span>
+                        <span class="feature-tag">Tea Gardens</span>
+                    </div>
+                    <div class="intl-footer">
+                        <div>
+                            <div class="intl-price">₹18,499</div>
+                            <div class="intl-days">4N/5D · From CBE</div>
+                        </div>
+                        <div class="card-btns">
+                            <button class="view-pkg-btn" onclick="event.stopPropagation();showNatModal('Kerala')">View
+                                Package</button>
+                            <button class="book-btn"
+                                onclick="event.stopPropagation();openBooking('Kerala Backwaters Tour')">Book
+                                Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="intl-card" onclick="showNatModal('Jaipur')">
+                <div class="intl-img bg-rajasthan">🏯</div>
+                <div class="intl-body">
+                    <div class="intl-country">North West India</div>
+                    <div class="intl-name playfair">Rajasthan Royal</div>
+                    <div class="intl-features">
+                        <span class="feature-tag">Palaces</span>
+                        <span class="feature-tag">Safari</span>
+                        <span class="feature-tag">History</span>
+                    </div>
+                    <div class="intl-footer">
+                        <div>
+                            <div class="intl-price">₹24,999</div>
+                            <div class="intl-days">7N/8D · From CBE</div>
+                        </div>
+                        <div class="card-btns">
+                            <button class="view-pkg-btn" onclick="event.stopPropagation();showNatModal('Jaipur')">View
+                                Package</button>
+                            <button class="book-btn"
+                                onclick="event.stopPropagation();openBooking('Rajasthan Royal Tour')">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="intl-card" onclick="showNatModal('Goa')">
+                <div class="intl-img bg-goa">🏖️</div>
+                <div class="intl-body">
+                    <div class="intl-country">West India</div>
+                    <div class="intl-name playfair">Goa Beach Bliss</div>
+                    <div class="intl-features">
+                        <span class="feature-tag">Beaches</span>
+                        <span class="feature-tag">Nightlife</span>
+                        <span class="feature-tag">Fun</span>
+                    </div>
+                    <div class="intl-footer">
+                        <div>
+                            <div class="intl-price">₹14,999</div>
+                            <div class="intl-days">3N/4D · From CBE</div>
+                        </div>
+                        <div class="card-btns">
+                            <button class="view-pkg-btn" onclick="event.stopPropagation();showNatModal('Goa')">View
+                                Package</button>
+                            <button class="book-btn"
+                                onclick="event.stopPropagation();openBooking('Goa Beach Getaway')">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+     PACKAGE PRICE CALCULATOR
+     ============================ -->
+    <section class="calc-section" id="calculator">
+        <div class="section-header">
+            <div>
+                <div class="section-tag">💰 Smart Pricing</div>
+                <div class="section-title playfair">Package <span>Price Calculator</span></div>
+                <div class="section-sub">Get an instant estimate for your dream vacation. Adjust every detail and see
+                    the price update live.</div>
+            </div>
+        </div>
+        <div class="calculator">
+            <div class="calc-grid">
+                <div class="calc-form">
+                    <div class="calc-row">
+                        <div class="calc-field">
+                            <label>Destination</label>
+                            <select id="calcDest" onchange="calcPrice()">
+                                <option value="15000">Kerala (Domestic)</option>
+                                <option value="22000">Kashmir (Domestic)</option>
+                                <option value="20000">Rajasthan (Domestic)</option>
+                                <option value="12000">Goa (Domestic)</option>
+                                <option value="18000">Himachal (Domestic)</option>
+                                <option value="25000">Andaman (Domestic)</option>
+                                <option value="45000">Thailand (International)</option>
+                                <option value="55000">Dubai (International)</option>
+                                <option value="48000">Singapore (International)</option>
+                                <option value="70000">Bali (International)</option>
+                                <option value="98000">Maldives (International)</option>
+                                <option value="185000">Europe (International)</option>
+                            </select>
+                        </div>
+                        <div class="calc-field">
+                            <label>Duration</label>
+                            <select id="calcDays" onchange="calcPrice()">
+                                <option value="1">3 Nights / 4 Days</option>
+                                <option value="1.3">5 Nights / 6 Days</option>
+                                <option value="1.6" selected>7 Nights / 8 Days</option>
+                                <option value="2.1">10 Nights / 11 Days</option>
+                                <option value="2.8">14 Nights / 15 Days</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="calc-row">
+                        <div class="calc-field">
+                            <label>Adults</label>
+                            <select id="calcAdults" onchange="handleCustom('Adults'); calcPrice()">
+                                <option value="1">1 Adult</option>
+                                <option value="2" selected>2 Adults</option>
+                                <option value="3">3 Adults</option>
+                                <option value="4">4 Adults</option>
+                                <option value="6">6 Adults (Group)</option>
+                                <option value="10">10 Adults (Group)</option>
+                                <option value="custom">Custom...</option>
+                            </select>
+                            <input type="number" id="calcAdultsCustom" min="1" max="100" placeholder="Enter number" oninput="calcPrice()" style="display:none; margin-top:8px; width:100%; padding:10px 14px; border:1.5px solid var(--orange); border-radius:10px; font-size:14px; font-family:'Inter',sans-serif; outline:none; background:white; color:var(--dark);">
+                        </div>
+                        <div class="calc-field">
+                            <label>Children (5–12 yrs)</label>
+                            <select id="calcKids" onchange="handleCustom('Kids'); calcPrice()">
+                                <option value="0">No Children</option>
+                                <option value="0.5">1 Child</option>
+                                <option value="1">2 Children</option>
+                                <option value="1.5">3 Children</option>
+                                <option value="custom">Custom...</option>
+                            </select>
+                            <input type="number" id="calcKidsCustom" min="0" max="50" placeholder="Enter number" oninput="calcPrice()" style="display:none; margin-top:8px; width:100%; padding:10px 14px; border:1.5px solid var(--orange); border-radius:10px; font-size:14px; font-family:'Inter',sans-serif; outline:none; background:white; color:var(--dark);">
+                        </div>
+                    </div>
+                    <div class="calc-row">
+                        <div class="calc-field">
+                            <label>Hotel Category</label>
+                            <select id="calcHotel" onchange="calcPrice()">
+                                <option value="1">3 Star — Budget</option>
+                                <option value="1.4" selected>4 Star — Comfort</option>
+                                <option value="2">5 Star — Luxury</option>
+                                <option value="2.5">5 Star — Premium Luxury</option>
+                            </select>
+                        </div>
+                        <div class="calc-field">
+                            <label>Transport</label>
+                            <select id="calcTransport" onchange="calcPrice()">
+                                <option value="0">Road / Bus Only</option>
+                                <option value="3500">Train Included</option>
+                                <option value="7000" selected>Flight Included</option>
+                                <option value="12000">Private Charter</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="calc-row">
+                        <div class="calc-field">
+                            <label>Meal Plan</label>
+                            <select id="calcMeals" onchange="calcPrice()">
+                                <option value="0">Room Only</option>
+                                <option value="800">Breakfast Only</option>
+                                <option value="1500" selected>Breakfast + Dinner</option>
+                                <option value="2200">All Inclusive</option>
+                            </select>
+                        </div>
+                        <div class="calc-field">
+                            <label>Travel Season</label>
+                            <select id="calcMonth" onchange="calcPrice()">
+                                <option value="1">Jan – Mar (Peak Season)</option>
+                                <option value="0.85">Apr – Jun (Shoulder)</option>
+                                <option value="0.75">Jul – Sep (Off Peak)</option>
+                                <option value="1.15">Oct – Dec (Festive)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="price-box">
+                    <div class="price-label">✦ Estimated Package Price</div>
+                    <div class="price-amount playfair" id="totalPrice">₹72,400</div>
+                    <div class="price-note">Per package · All taxes included</div>
+                    <button class="price-btn"
+                        onclick="openBooking('Calculator Package — ' + document.getElementById('calcDest').options[document.getElementById('calcDest').selectedIndex].text)">Book
+                        This Package →</button>
+                    <div class="price-breakdown">
+                        <div class="pb-row"><span>Base Package</span><span id="bprice">₹44,000</span></div>
+                        <div class="pb-row"><span>Hotel Upgrade</span><span id="hprice">₹17,600</span></div>
+                        <div class="pb-row"><span>Transport</span><span id="tprice">₹7,000</span></div>
+                        <div class="pb-row"><span>Meals</span><span id="mprice">₹3,000</span></div>
+                        <div class="pb-row"><span>Season Adjustment</span><span id="sprice">0%</span></div>
+                        <div class="pb-row"><span>Grand Total</span><span id="fprice">₹72,400</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+     INTERNATIONAL TOURS
+     ============================ -->
+    <section id="international">
+        <div class="section-header">
+            <div>
+                <div class="section-tag">🌍 Go Global</div>
+                <div class="section-title playfair">International <span>Dream Tours</span></div>
+                <div class="section-sub">Explore our 14 premium international packages — visa assistance and guided
+                    tours included.</div>
+            </div>
+            <a href="international.html" class="view-all">View All Countries →</a>
+        </div>
+        <div class="intl-grid">
+            <!-- Europe -->
+            <div class="intl-card" onclick="showIntlModal('Europe')">
+                <div class="intl-img" style="background: url('images/europe_tour_1775546052863.png') center/cover;">🇪🇺
+                </div>
+                <div class="intl-body">
+                    <div class="intl-country">Grand Continent</div>
+                    <div class="intl-name playfair">Europe</div>
+                    <div class="intl-features">
+                        <span class="feature-tag">History</span>
+                        <span class="feature-tag">Art</span>
+                        <span class="feature-tag">Food</span>
+                    </div>
+                    <div class="intl-footer">
+                        <div>
+                            <div class="intl-price">₹1,85,999</div>
+                            <div class="intl-days">12N/13D · From CBE</div>
+                        </div>
+                        <div class="card-btns">
+                            <button class="view-pkg-btn" onclick="event.stopPropagation();showIntlModal('Europe')">View
+                                Package</button>
+                            <button class="book-btn"
+                                onclick="event.stopPropagation();openBooking('Europe Grand Tour')">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Singapore -->
+            <div class="intl-card" onclick="showIntlModal('Singapore')">
+                <div class="intl-img" style="background: url('images/singapore_tour_1775546012732.png') center/cover;">
+                    🇸🇬</div>
+                <div class="intl-body">
+                    <div class="intl-country">Modern City</div>
+                    <div class="intl-name playfair">Singapore</div>
+                    <div class="intl-features">
+                        <span class="feature-tag">Gardens</span>
+                        <span class="feature-tag">Universal</span>
+                        <span class="feature-tag">Shopping</span>
+                    </div>
+                    <div class="intl-footer">
+                        <div>
+                            <div class="intl-price">₹48,999</div>
+                            <div class="intl-days">4N/5D · From CBE</div>
+                        </div>
+                        <div class="card-btns">
+                            <button class="view-pkg-btn"
+                                onclick="event.stopPropagation();showIntlModal('Singapore')">View Package</button>
+                            <button class="book-btn"
+                                onclick="event.stopPropagation();openBooking('Singapore Tour')">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Malaysia -->
+            <div class="intl-card" onclick="showIntlModal('Malaysia')">
+                <div class="intl-img" style="background: url('images/malaysia_tour_1775546028000.png') center/cover;">
+                    🇲🇾</div>
+                <div class="intl-body">
+                    <div class="intl-country">Truly Asia</div>
+                    <div class="intl-name playfair">Malaysia</div>
+                    <div class="intl-features">
+                        <span class="feature-tag">Twin Towers</span>
+                        <span class="feature-tag">Islands</span>
+                        <span class="feature-tag">Nature</span>
+                    </div>
+                    <div class="intl-footer">
+                        <div>
+                            <div class="intl-price">₹42,999</div>
+                            <div class="intl-days">5N/6D · From CBE</div>
+                        </div>
+                        <div class="card-btns">
+                            <button class="view-pkg-btn"
+                                onclick="event.stopPropagation();showIntlModal('Malaysia')">View Package</button>
+                            <button class="book-btn" onclick="event.stopPropagation();openBooking('Malaysia Tour')">Book
+                                Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Dubai -->
+            <div class="intl-card" onclick="showIntlModal('Dubai')">
+                <div class="intl-img" style="background: url('images/dubai_tour_1775545997585.png') center/cover;">🇦🇪
+                </div>
+                <div class="intl-body">
+                    <div class="intl-country">Desert Dreams</div>
+                    <div class="intl-name playfair">Dubai</div>
+                    <div class="intl-features">
+                        <span class="feature-tag">Burj Khalifa</span>
+                        <span class="feature-tag">Safari</span>
+                        <span class="feature-tag">Luxury</span>
+                    </div>
+                    <div class="intl-footer">
+                        <div>
+                            <div class="intl-price">₹55,999</div>
+                            <div class="intl-days">5N/6D · From CBE</div>
+                        </div>
+                        <div class="card-btns">
+                            <button class="view-pkg-btn" onclick="event.stopPropagation();showIntlModal('Dubai')">View
+                                Package</button>
+                            <button class="book-btn" onclick="event.stopPropagation();openBooking('Dubai Tour')">Book
+                                Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================
+     FLIGHT CHECKER
+     ============================ -->
+    <section class="flight-section" id="flights">
+        <div class="section-header">
+            <div>
+                <div class="section-tag">✈️ Live Availability</div>
+                <div class="section-title playfair">Check <span style="color:#FF9A4A">Flight Availability</span></div>
+                <div class="section-sub">Search available flights from major Indian cities at the best prices. Book
+                    instantly.</div>
+            </div>
+        </div>
+        <div class="flight-tabs">
+            <button class="ftab active" onclick="setFlightTab(this,'one')">One Way</button>
+            <button class="ftab" onclick="setFlightTab(this,'round')">Round Trip</button>
+            <button class="ftab" onclick="setFlightTab(this,'multi')">Multi City</button>
+        </div>
+        <div class="flight-form">
+            <div class="f-field">
+                <label>From</label>
+                <select>
+                    <option>Coimbatore (CJB)</option>
+                    <option>Chennai (MAA)</option>
+                    <option>Bengaluru (BLR)</option>
+                    <option>Mumbai (BOM)</option>
+                    <option>Delhi (DEL)</option>
+                    <option>Hyderabad (HYD)</option>
+                    <option>Madurai (IXM)</option>
+                </select>
+            </div>
+            <div class="f-field">
+                <label>To</label>
+                <select>
+                    <option>Delhi (DEL)</option>
+                    <option>Mumbai (BOM)</option>
+                    <option>Goa (GOI)</option>
+                    <option>Jaipur (JAI)</option>
+                    <option>Srinagar (SXR)</option>
+                    <option>Leh Ladakh (IXL)</option>
+                    <option>Kochi (COK)</option>
+                    <option>Kolkata (CCU)</option>
+                    <option>Bangkok (BKK)</option>
+                    <option>Dubai (DXB)</option>
+                    <option>Singapore (SIN)</option>
+                    <option>Bali (DPS)</option>
+                </select>
+            </div>
+            <div class="f-field">
+                <label>Depart Date</label>
+                <input type="date" id="departDate">
+            </div>
+            <div class="f-field" id="returnDateField">
+                <label>Return Date</label>
+                <input type="date" id="returnDate">
+            </div>
+            <div class="f-field">
+                <label>Travelers</label>
+                <select>
+                    <option>1 Adult</option>
+                    <option>2 Adults</option>
+                    <option>2 Adults + 1 Child</option>
+                    <option>4 Adults</option>
+                    <option>Group (5+)</option>
+                </select>
+            </div>
+            <button class="search-flight-btn" onclick="showFlights()">Search Flights ✈️</button>
+        </div>
+        <div class="flight-results" id="flightResults"></div>
+    </section>
+
+    <!-- ============================
+     GALLERY
+     ============================ -->
+    <section id="gallery">
+        <div class="section-header">
+            <div>
+                <div class="section-tag">📸 Our Gallery</div>
+                <div class="section-title playfair">Memories That <span>Last Forever</span></div>
+                <div class="section-sub">Real moments from our travelers' journeys across India and the world.</div>
+            </div>
+            <button class="view-all">View Full Gallery →</button>
+        </div>
+        <div class="gallery-grid">
+            <div class="g-item">
+                <div class="g-photo g1">🏔️</div>
+                <div class="g-label">Kashmir Valley</div>
+            </div>
+            <div class="g-item">
+                <div class="g-photo g2">🌴</div>
+                <div class="g-label">Kerala Backwaters</div>
+            </div>
+            <div class="g-item">
+                <div class="g-photo g3">🏯</div>
+                <div class="g-label">Jaipur Palace</div>
+            </div>
+            <div class="g-item">
+                <div class="g-photo g4">🌿</div>
+                <div class="g-label">Munnar Tea Hills</div>
+            </div>
+            <div class="g-item">
+                <div class="g-photo g5">🏖️</div>
+                <div class="g-label">Goa Beaches</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+     TESTIMONIALS
+     ============================ -->
+    <section class="testi-section">
+        <div class="section-header">
+            <div>
+                <div class="section-tag">⭐ Happy Travelers</div>
+                <div class="section-title playfair">Stories That <span>Inspire</span></div>
+                <div class="section-sub">Over 12,000 satisfied travelers trust Next Trip Holidays for their dream
+                    vacations.
+                </div>
+            </div>
+        </div>
+        <div class="testi-grid">
+            <div class="testi-card">
+                <div class="stars">★★★★★</div>
+                <div class="testi-text">Next Trip Holidays made our Kerala honeymoon absolutely magical. Every detail
+                    was
+                    perfect — from the houseboat to the Ayurvedic spa. The team was available 24/7!</div>
+                <div class="testi-author">
+                    <div class="author-avatar">RK</div>
+                    <div>
+                        <div class="author-name">Ramesh & Kavitha</div>
+                        <div class="author-trip">Kerala Honeymoon · Jan 2025</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testi-card">
+                <div class="stars">★★★★★</div>
+                <div class="testi-text">The Rajasthan Royal Tour was beyond expectations. Our kids loved the camel rides
+                    at Jaisalmer. Best family vacation ever — Next Trip Holidays handled everything perfectly!</div>
+                <div class="testi-author">
+                    <div class="author-avatar">SP</div>
+                    <div>
+                        <div class="author-name">Suresh Patel Family</div>
+                        <div class="author-trip">Rajasthan Family Tour · Dec 2024</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testi-card">
+                <div class="stars">★★★★★</div>
+                <div class="testi-text">Booked the Dubai package last minute and they arranged everything in 48 hours
+                    including visa! Best travel agency in Coimbatore, hands down. Will book again!</div>
+                <div class="testi-author">
+                    <div class="author-avatar">AM</div>
+                    <div>
+                        <div class="author-name">Anitha Mani</div>
+                        <div class="author-trip">Dubai Tour · Feb 2025</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+     WHY CHOOSE US
+     ============================ -->
+    <section>
+        <div class="section-header">
+            <div>
+                <div class="section-tag">💎 Why Next Trip Holidays</div>
+                <div class="section-title playfair">Travel with <span>Confidence</span></div>
+            </div>
+        </div>
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon">🏆</div>
+                <div class="why-title playfair">15 Years of Excellence</div>
+                <div class="why-desc">Trusted by 12,000+ families since 2009. Award-winning travel agency based in
+                    Coimbatore.</div>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">💳</div>
+                <div class="why-title playfair">Best Price Guarantee</div>
+                <div class="why-desc">Find it cheaper elsewhere? We'll match the price and add a complimentary upgrade.
+                </div>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">🛡️</div>
+                <div class="why-title playfair">Fully Insured Trips</div>
+                <div class="why-desc">All our packages come with comprehensive travel insurance for complete peace of
+                    mind.</div>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">📞</div>
+                <div class="why-title playfair">24/7 Support</div>
+                <div class="why-desc">Our dedicated travel experts are available around the clock, every day of the
+                    year.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================
+     NEWSLETTER
+     ============================ -->
+    <div class="newsletter">
+        <h2 class="playfair">Get Exclusive Travel Deals</h2>
+        <p>Subscribe and receive special offers, new destination launches & early-bird discounts directly in your inbox.
+        </p>
+        <div class="newsletter-form">
+            <input type="email" placeholder="Enter your email address">
+            <button onclick="alert('Thank you! You will receive exclusive deals soon.')">Subscribe Now</button>
+        </div>
+    </div>
+
+    <!-- ============================
+     FOOTER
+     ============================ -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo">
+                    <img src="https://res.cloudinary.com/drkgkgiat/image/upload/q_auto/f_auto/v1775567539/Next_TRip_Final_Logo_Square_Size_-_Copy-removebg-preview_bsfsev.png"
+                        alt="Next Trip Logo" style="height: 60px; width: auto; filter: brightness(0) invert(1);">
+                </div>
+                <p>India's most trusted travel partner since 2009. We create unforgettable journeys across 90+ national
+                    and 40+ international destinations — all from the heart of Coimbatore.</p>
+                <div class="footer-contact">
+                    📍 45, Avinashi Road, Coimbatore – 641018, Tamil Nadu<br>
+                    📞 +91 98765 43210 &nbsp;|&nbsp; +91 87654 32109<br>
+                    ✉️ hello@nexttripholidays.in<br>
+                    🕐 Mon–Sat: 9:00 AM – 8:00 PM
+                </div>
+                <div class="footer-social">
+                    <button class="social-btn" title="Facebook">📘</button>
+                    <button class="social-btn" title="Instagram">📷</button>
+                    <button class="social-btn" title="Twitter">🐦</button>
+                    <button class="social-btn" title="YouTube">▶️</button>
+                    <button class="social-btn" title="WhatsApp">💬</button>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>National Tours</h4>
+                <ul>
+                    <li><a href="#">Kashmir Packages</a></li>
+                    <li><a href="kerala.html">Kerala Packages</a></li>
+                    <li><a href="#">Rajasthan Packages</a></li>
+                    <li><a href="#">Goa Packages</a></li>
+                    <li><a href="#">Himachal Pradesh</a></li>
+                    <li><a href="#">Ladakh Packages</a></li>
+                    <li><a href="#">Andaman Islands</a></li>
+                    <li><a href="#">View All 90+ →</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>International</h4>
+                <ul>
+                    <li><a href="#">Thailand</a></li>
+                    <li><a href="#">Dubai & UAE</a></li>
+                    <li><a href="#">Singapore</a></li>
+                    <li><a href="#">Bali, Indonesia</a></li>
+                    <li><a href="#">Europe Grand Tour</a></li>
+                    <li><a href="#">Maldives</a></li>
+                    <li><a href="#">USA & Canada</a></li>
+                    <li><a href="#">View All 40+ →</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Flight Booking</a></li>
+                    <li><a href="#">Hotel Booking</a></li>
+                    <li><a href="#">Visa Assistance</a></li>
+                    <li><a href="#">Travel Insurance</a></li>
+                    <li><a href="#">Group Tours</a></li>
+                    <li><a href="#">Honeymoon Special</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 Next Trip Holidays Tours & Travel. All Rights Reserved.</span>
+            <span>Made with ❤️ in Coimbatore, Tamil Nadu</span>
+            <span>
+                <a href="#" style="color:rgba(255,255,255,0.3);text-decoration:none;margin:0 8px;">Privacy Policy</a>
+                <a href="#" style="color:rgba(255,255,255,0.3);text-decoration:none;margin:0 8px;">Terms of Service</a>
+                <a href="#" style="color:rgba(255,255,255,0.3);text-decoration:none;">Cancellation Policy</a>
+            </span>
+        </div>
+    </footer>
+
+    <!-- ============================
+     BOOKING MODAL
+     ============================ -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <button class="modal-close" onclick="closeBooking()">✕</button>
+            <div id="modalContent">
+                <div class="modal-title playfair">Book Your <span style="color:var(--orange)">Dream Trip</span> ✦</div>
+                <div class="modal-sub" id="modalSub">Fill in your details — our travel expert will call you within 30
+                    minutes!</div>
+                <div class="form-grid">
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label>Full Name *</label>
+                            <input type="text" id="bookName" placeholder="Your full name">
+                        </div>
+                        <div class="form-field">
+                            <label>Mobile Number *</label>
+                            <input type="tel" id="bookPhone" placeholder="+91 98765 43210">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="your@email.com">
+                        </div>
+                        <div class="form-field">
+                            <label>Your City</label>
+                            <input type="text" placeholder="Coimbatore">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label>Preferred Travel Date</label>
+                            <input type="date" id="bookDate">
+                        </div>
+                        <div class="form-field">
+                            <label>Number of Travelers</label>
+                            <select>
+                                <option>1 Adult</option>
+                                <option>2 Adults</option>
+                                <option>Family (2 Adults + 2 Children)</option>
+                                <option>Group (5–10 people)</option>
+                                <option>Large Group (10+ people)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label>Selected Package / Destination</label>
+                        <input type="text" id="bookPackage" placeholder="Package name">
+                    </div>
+                    <div class="form-field">
+                        <label>Budget Range (Per Person)</label>
+                        <select>
+                            <option>Below ₹15,000</option>
+                            <option>₹15,000 – ₹30,000</option>
+                            <option>₹30,000 – ₹60,000</option>
+                            <option>₹60,000 – ₹1,00,000</option>
+                            <option>Above ₹1,00,000</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label>Special Requirements</label>
+                        <textarea
+                            placeholder="Anniversary / honeymoon celebration, dietary needs, accessibility requirements, specific hotels, visa help..."></textarea>
+                    </div>
+                    <button class="submit-btn" onclick="submitBooking()">🎯 Confirm Booking — Free Callback in 30
+                        Minutes!</button>
+                </div>
+            </div>
+            <div class="success-msg" id="successMsg">
+                <div class="success-icon">🎉</div>
+                <div class="success-title playfair">Booking Request Received!</div>
+                <div class="success-sub">
+                    Thank you! Our travel expert will call you within <strong>30 minutes</strong>.<br>
+                    Please check your email for the confirmation details.<br><br>
+                    <span style="color:var(--orange);font-weight:600;">Next Trip Holidays Tours & Travel —
+                        Coimbatore</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- International Visiting Places Modal -->
+    <div class="modal-overlay" id="intlModal"
+        style="display: none; align-items: center; justify-content: center; z-index: 3000;">
+        <div class="modal" style="max-width: 500px; padding: 40px; border-radius: 30px;">
+            <button class="modal-close" onclick="closeIntlModal()">✕</button>
+            <div class="modal-title playfair" id="intlModalName">Europe</div>
+            <div class="modal-sub" style="color:var(--orange); font-weight:700; margin-bottom: 24px;">Must-Visit
+                Attractions</div>
+            <ul id="intlModalList" style="list-style: none; margin-bottom: 30px; text-align: left;">
+                <!-- Populated by JS -->
+            </ul>
+            <button class="submit-btn"
+                onclick="openBooking('International Package — ' + document.getElementById('intlModalName').innerText)">Book
+                This Package Now</button>
+        </div>
+    </div>
+
+    <!-- ============================
+     LIVE SIDEBAR NOTIFICATIONS
+     ============================ -->
+    <div class="live-sidebar" id="liveSidebar"></div>
+
+    <!-- ============================
+     FLOATING BUTTONS
+     ============================ -->
+    <div class="float-btns">
+        <div class="float-btn-wrap">
+            <button class="float-btn float-logo" title="Next Trip Holidays"
+                onclick="window.scrollTo({top:0, behavior:'smooth'})">
+                <img src="https://res.cloudinary.com/drkgkgiat/image/upload/q_auto/f_auto/v1775567539/Next_TRip_Final_Logo_Square_Size_-_Copy-removebg-preview_bsfsev.png"
+                    alt="Logo">
+            </button>
+        </div>
+        <div class="float-btn-wrap">
+            <button class="float-btn float-ig" title="Follow us on Instagram"
+                onclick="alert('Follow us on Instagram!\n@Next Trip HolidaysTours\nFor travel inspiration & exclusive deals!')">
+                <i class="fab fa-instagram"></i>
+            </button>
+        </div>
+        <div class="float-btn-wrap">
+            <button class="float-btn float-wa" title="Chat on WhatsApp"
+                onclick="alert('WhatsApp Us!\n+91 98765 43210\n\nSend your travel enquiry and get an instant reply!')">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- ============================
+     JAVASCRIPT
+     ============================ -->
+    <script>
+        /* ---- CUSTOM DROPDOWN HANDLER ---- */
+        function handleCustom(field) {
+            const select = document.getElementById('calc' + field);
+            const customInput = document.getElementById('calc' + field + 'Custom');
+            if (select.value === 'custom') {
+                customInput.style.display = 'block';
+                customInput.focus();
+            } else {
+                customInput.style.display = 'none';
+            }
+        }
+
+        /* ---- PACKAGE PRICE CALCULATOR ---- */
+        function calcPrice() {
+            const base = parseInt(document.getElementById('calcDest').value) || 15000;
+            const daysMult = parseFloat(document.getElementById('calcDays').value) || 1.6;
+
+            // Adults — support custom input
+            const adultsSelect = document.getElementById('calcAdults');
+            const adultsCustom = document.getElementById('calcAdultsCustom');
+            const adults = adultsSelect.value === 'custom'
+                ? (parseInt(adultsCustom.value) || 1)
+                : (parseInt(adultsSelect.value) || 2);
+
+            // Kids — support custom input
+            const kidsSelect = document.getElementById('calcKids');
+            const kidsCustom = document.getElementById('calcKidsCustom');
+            const kids = kidsSelect.value === 'custom'
+                ? (parseInt(kidsCustom.value) || 0) * 0.5
+                : (parseFloat(kidsSelect.value) || 0);
+
+            const hotel = parseFloat(document.getElementById('calcHotel').value) || 1.4;
+            const transport = parseInt(document.getElementById('calcTransport').value) || 7000;
+            const meals = parseInt(document.getElementById('calcMeals').value) || 1500;
+            const season = parseFloat(document.getElementById('calcMonth').value) || 1;
+
+            const persons = adults + kids;
+            const baseTotal = base * daysMult * persons;
+            const hotelExtra = baseTotal * (hotel - 1);
+            const mealsTotal = meals * daysMult * persons;
+            const subtotal = baseTotal + hotelExtra + mealsTotal + transport;
+            const total = Math.round(subtotal * season);
+
+            function fmt(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
+
+            document.getElementById('totalPrice').textContent = fmt(total);
+            document.getElementById('fprice').textContent = fmt(total);
+            document.getElementById('bprice').textContent = fmt(baseTotal);
+            document.getElementById('hprice').textContent = fmt(hotelExtra);
+            document.getElementById('tprice').textContent = fmt(transport);
+            document.getElementById('mprice').textContent = fmt(mealsTotal);
+
+            const pct = Math.round((season - 1) * 100);
+            document.getElementById('sprice').textContent = (pct >= 0 ? '+' : '') + pct + '%';
+        }
+        calcPrice();
+
+        /* ---- FLIGHT TABS ---- */
+        function setFlightTab(btn, type) {
+            document.querySelectorAll('.ftab').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+            const retField = document.getElementById('returnDateField');
+            retField.style.opacity = type === 'one' ? '0.4' : '1';
+            retField.querySelector('input').disabled = (type === 'one');
+        }
+
+        /* ---- FLIGHT SEARCH RESULTS ---- */
+        const flightData = [
+            { airline: 'IndiGo', num: '6E 204', from: 'CJB', to: 'DEL', dep: '06:15', arr: '08:45', dur: '2h 30m', stops: 'Non-stop', price: '₹4,299', logo: '💙' },
+            { airline: 'Air India', num: 'AI 566', from: 'CJB', to: 'DEL', dep: '09:30', arr: '12:20', dur: '2h 50m', stops: 'Non-stop', price: '₹5,199', logo: '✈️' },
+            { airline: 'SpiceJet', num: 'SG 112', from: 'CJB', to: 'DEL', dep: '13:45', arr: '17:30', dur: '3h 45m', stops: '1 Stop·Mumbai', price: '₹3,799', logo: '🌶️' },
+            { airline: 'Vistara', num: 'UK 856', from: 'CJB', to: 'DEL', dep: '16:00', arr: '18:40', dur: '2h 40m', stops: 'Non-stop', price: '₹6,299', logo: '⭐' },
+            { airline: 'Akasa Air', num: 'QP 308', from: 'CJB', to: 'DEL', dep: '19:15', arr: '22:05', dur: '2h 50m', stops: 'Non-stop', price: '₹3,599', logo: '🔶' },
+        ];
+
+        function showFlights() {
+            const container = document.getElementById('flightResults');
+            container.innerHTML = '<p style="color:rgba(255,255,255,0.45);font-size:12px;letter-spacing:1.5px;text-transform:uppercase;text-align:center;padding:8px 0;margin-bottom:4px;">Showing Available Flights — Click any flight to book</p>';
+
+            flightData.forEach(f => {
+                const card = document.createElement('div');
+                card.className = 'flight-card';
+                card.innerHTML = `
+      <div class="airline">
+        <div class="airline-logo">${f.logo}</div>
+        <div>
+          <div class="airline-name">${f.airline}</div>
+          <div class="airline-num">${f.num}</div>
+        </div>
+      </div>
+      <div class="flight-route">
+        <div class="route-time">${f.dep}</div>
+        <div class="route-code">${f.from}</div>
+      </div>
+      <div class="flight-route" style="min-width:140px;">
+        <div class="route-line">
+          <div class="route-dash"></div>
+          <div class="route-dur">${f.dur}</div>
+          <div class="route-dash"></div>
+        </div>
+        <div class="route-stops">${f.stops}</div>
+      </div>
+      <div class="flight-route">
+        <div class="route-time">${f.arr}</div>
+        <div class="route-code">${f.to}</div>
+      </div>
+      <div class="flight-price-wrap">
+        <div class="flight-price">${f.price}</div>
+        <div class="flight-price-sub">per person</div>
+        <button class="book-flight" onclick="openBooking('Flight — ${f.airline} ${f.num}')">Book Now</button>
+      </div>
+    `;
+                container.appendChild(card);
+            });
+        }
+
+        /* ---- BOOKING MODAL ---- */
+        function openBooking(pkg) {
+            const overlay = document.getElementById('modalOverlay');
+            overlay.classList.add('show');
+            document.getElementById('modalSub').textContent =
+                'Selected: ' + pkg + ' — Our expert will call you within 30 minutes!';
+            document.getElementById('bookPackage').value = pkg;
+            document.getElementById('modalContent').style.display = 'block';
+            document.getElementById('successMsg').style.display = 'none';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBooking() {
+            document.getElementById('modalOverlay').classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        /* ---- INTERNATIONAL TOUR LOGIC ---- */
+        function showAllIntl() {
+            const extraCards = document.querySelectorAll('.intl-extra');
+            const btn = document.getElementById('intlViewAll');
+
+            if (btn.innerText.includes('View All')) {
+                extraCards.forEach(card => card.style.display = 'flex');
+                btn.innerText = 'Show Featured Only ↑';
+            } else {
+                extraCards.forEach(card => card.style.display = 'none');
+                btn.innerText = 'View All Countries →';
+                document.getElementById('international').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        const natDestData = {
+            "Kashmir": ["Gulmarg", "Pahalgam", "Dal Lake", "Sonamarg", "Shalimar Bagh"],
+            "Kerala": ["Munnar Tea Gardens", "Alleppey Backwaters", "Wayanad", "Kochi", "Thekkady"],
+            "Jaipur": ["Amer Fort", "Hawa Mahal", "City Palace", "Jantar Mantar", "Nahargarh Fort"],
+            "Goa": ["Calangute Beach", "Fort Aguada", "Basilica of Bom Jesus", "Dudhsagar Falls", "Anjuna Flea Market"]
+        };
+
+        function showNatModal(name) {
+            const modal = document.getElementById('intlModal'); // Reuse same modal
+            const nameEl = document.getElementById('intlModalName');
+            const listEl = document.getElementById('intlModalList');
+
+            nameEl.innerText = name;
+            listEl.innerHTML = "";
+
+            const places = natDestData[name] || ["Scenic Points", "Local Culture", "Traditional Markets"];
+
+            places.forEach(place => {
+                const li = document.createElement('li');
+                li.style.padding = "10px 0";
+                li.style.borderBottom = "1px solid #eee";
+                li.innerHTML = `📍 ${place}`;
+                listEl.appendChild(li);
+            });
+
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        const intlDestData = {
+            "Europe": ["Switzerland", "Paris", "Venice", "London", "Rome"],
+            "Singapore": ["Marina Bay Sands", "Sentosa Island", "Gardens by the Bay", "Universal Studios", "Merlion Park"],
+            "Malaysia": ["Petronas Towers", "Genting Highlands", "Batu Caves", "Langkawi", "Melaka"],
+            "Dubai": ["Burj Khalifa", "Dubai Mall", "Palm Jumeirah", "Desert Safari", "Miracle Garden"],
+            "Vietnam": ["Ha Long Bay", "Ho Chi Minh City", "Hoi An", "Da Nang", "Cu Chi Tunnels"],
+            "Bali": ["Uluwatu Temple", "Ubud", "Seminyak", "Tanah Lot", "Mount Batur"],
+            "Philippines": ["El Nido", "Boracay", "Manila", "Chocolate Hills", "Palawan"],
+            "Cambodia": ["Angkor Wat", "Phnom Penh", "Koh Rong", "Siem Reap", "Tonle Sap"],
+            "China": ["Great Wall", "Forbidden City", "Shanghai Bund", "Terracotta Army", "Yangshuo"],
+            "Japan": ["Tokyo", "Kyoto", "Mount Fuji", "Osaka", "Nara"],
+            "Hong Kong": ["Victoria Peak", "Disneyland", "Tsim Sha Tsui", "Ocean Park", "Lantau Island"],
+            "Australia": ["Sydney Opera House", "Great Barrier Reef", "Melbourne", "Gold Coast", "Uluru"],
+            "South Korea": ["Seoul", "Jeju Island", "Busan", "DMZ", "Gyeongbokgung Palace"],
+            "Turkey": ["Istanbul", "Cappadocia", "Pamukkale", "Ephesus", "Antalya"]
+        };
+
+        function showIntlModal(name) {
+            const modal = document.getElementById('intlModal');
+            const nameEl = document.getElementById('intlModalName');
+            const listEl = document.getElementById('intlModalList');
+
+            nameEl.innerText = name;
+            listEl.innerHTML = "";
+
+            const places = intlDestData[name] || ["Local Attractions", "City Life", "Cultural Sites", "Scenic Views", "Shopping Districts"];
+
+            places.forEach(place => {
+                const li = document.createElement('li');
+                li.style.padding = "10px 0";
+                li.style.borderBottom = "1px solid #eee";
+                li.innerHTML = `📍 ${place}`;
+                listEl.appendChild(li);
+            });
+
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeIntlModal() {
+            document.getElementById('intlModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('modalOverlay').addEventListener('click', function (e) {
+            if (e.target === this) closeBooking();
+        });
+
+        document.getElementById('intlModal').addEventListener('click', function (e) {
+            if (e.target === this) closeIntlModal();
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeBooking();
+                closeIntlModal();
+            }
+        });
+
+        function submitBooking() {
+            const name = document.getElementById('bookName').value.trim();
+            const phone = document.getElementById('bookPhone').value.trim();
+            if (!name || !phone) {
+                alert('Please enter your Name and Mobile Number to proceed.');
+                return;
+            }
+            document.getElementById('modalContent').style.display = 'none';
+            document.getElementById('successMsg').style.display = 'block';
+            setTimeout(closeBooking, 3500);
+        }
+
+        /* ---- LIVE SIDEBAR NOTIFICATIONS ---- */
+        const liveNames = [
+            'Priya S.', 'Rahul M.', 'Kavitha R.', 'Suresh P.', 'Meena K.',
+            'Arjun T.', 'Divya N.', 'Karthik B.', 'Lakshmi V.', 'Anand J.',
+            'Pooja S.', 'Vijay K.', 'Nithya A.', 'Sathish R.', 'Rekha M.'
+        ];
+        const liveActions = [
+            'just booked', 'is viewing', 'enquired about', 'just confirmed', 'is exploring'
+        ];
+        const liveDests = [
+            'Kashmir Tour', 'Maldives Package', 'Thailand Tour', 'Kerala Honeymoon',
+            'Dubai Package', 'Europe Tour', 'Goa Getaway', 'Singapore Tour',
+            'Rajasthan Royal Tour', 'Bali Package', 'Ladakh Adventure', 'Andaman Tour'
+        ];
+        const liveTimes = [
+            'just now', '1 min ago', '3 mins ago', '5 mins ago', '8 mins ago', '10 mins ago'
+        ];
+
+        const sidebar = document.getElementById('liveSidebar');
+        let liveCards = [];
+
+        function addLiveCard() {
+            const name = liveNames[Math.floor(Math.random() * liveNames.length)];
+            const action = liveActions[Math.floor(Math.random() * liveActions.length)];
+            const dest = liveDests[Math.floor(Math.random() * liveDests.length)];
+            const time = liveTimes[Math.floor(Math.random() * liveTimes.length)];
+            const initials = name.split(' ').map(n => n[0]).join('');
+
+            const card = document.createElement('div');
+            card.className = 'live-card';
+            card.innerHTML = `
+    <div class="live-avatar">${initials}</div>
+    <div class="live-info">
+      <div class="live-name">${name}</div>
+      <div class="live-action">${action} ${dest}</div>
+      <div class="live-time">⏱ ${time}</div>
+    </div>
+    <div class="live-dot"></div>
+  `;
+
+            sidebar.innerHTML = '';
+            sidebar.appendChild(card);
+
+            // Hide the card after 5 seconds
+            setTimeout(() => {
+                card.style.opacity = '0';
+                card.style.transition = 'opacity 0.5s';
+                setTimeout(() => card.remove(), 500);
+            }, 5000);
+        }
+
+        // Show the first card immediately
+        addLiveCard();
+        // Set an interval to show the next cards every 6 seconds (6000ms)
+        setInterval(addLiveCard, 6000);
+
+        /* ---- SET DEFAULT DATES ---- */
+        const today = new Date();
+        const nextWeek = new Date(today); nextWeek.setDate(today.getDate() + 7);
+        const twoWeeks = new Date(today); twoWeeks.setDate(today.getDate() + 14);
+        const toISO = d => d.toISOString().split('T')[0];
+
+        document.querySelectorAll('input[type="date"]').forEach(el => {
+            el.min = toISO(today);
+            el.value = toISO(nextWeek);
+        });
+        const returnEl = document.getElementById('returnDate');
+        if (returnEl) returnEl.value = toISO(twoWeeks);
+
+        /* ---- COUNTER ODOMETER EFFECT ---- */
+        const counters = document.querySelectorAll('.counter');
+        const speed = 100;
+
+        const startCounting = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = +counter.getAttribute('data-target');
+                    const suffix = counter.getAttribute('data-suffix') || '';
+                    const isDecimal = counter.hasAttribute('data-decimals');
+
+                    const updateCount = () => {
+                        const count = parseFloat(counter.innerText);
+                        const inc = target / speed;
+
+                        if (count < target) {
+                            if (isDecimal) {
+                                counter.innerText = (count + inc).toFixed(1) + suffix;
+                            } else {
+                                counter.innerText = Math.ceil(count + inc) + suffix;
+                            }
+                            setTimeout(updateCount, 25);
+                        } else {
+                            counter.innerText = target + (isDecimal ? '' : '') + suffix;
+                        }
+                    };
+
+                    updateCount();
+                    observer.unobserve(counter);
+                }
+            });
+        };
+
+        const counterObserver = new IntersectionObserver(startCounting, {
+            root: null,
+            threshold: 0.1
+        });
+
+        counters.forEach(counter => {
+            counterObserver.observe(counter);
+        });
+    </script>
+</body>
+
+</html>

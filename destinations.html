@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Destinations — Next Trip Holidays</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --orange: #E08403;
+            --orange-light: #FF9F1A;
+            --orange-pale: #FFF5E6;
+            --orange-dark: #B36A02;
+            --white: #FFFFFF;
+            --dark: #1A1A1A;
+            --gray: #6B7280;
+            --light-bg: #F9FAFB;
+            --border: #E5E7EB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--light-bg);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--orange);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(224, 132, 3, 0.3);
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 20px;
+        }
+
+        .nav-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.4),
+                    transparent);
+            transition: all 0.6s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(224, 132, 3, 0.5);
+            background: linear-gradient(135deg, var(--orange-light) 0%, var(--orange) 100%);
+        }
+
+        .nav-cta:hover::before {
+            left: 100%;
+        }
+
+        .nav-cta:active {
+            transform: translateY(0) scale(0.98);
+            box-shadow: 0 5px 15px rgba(224, 132, 3, 0.4);
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Hero */
+        .dest-hero {
+            padding: 80px 60px 40px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            background: var(--orange-pale);
+            color: var(--orange);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 6px 16px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .dest-hero h1 {
+            font-size: 54px;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .dest-hero span {
+            color: var(--orange);
+        }
+
+        /* Grid */
+        .gallery-grid {
+            padding: 40px 60px 100px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        @keyframes electricPulse {
+            0% {
+                box-shadow: 0 0 8px rgba(224, 132, 3, 0.4), 0 0 20px rgba(224, 132, 3, 0.2), 0 0 40px rgba(224, 132, 3, 0.1);
+            }
+
+            50% {
+                box-shadow: 0 0 16px rgba(255, 159, 26, 0.8), 0 0 40px rgba(255, 159, 26, 0.4), 0 0 70px rgba(255, 159, 26, 0.2);
+            }
+
+            100% {
+                box-shadow: 0 0 8px rgba(224, 132, 3, 0.4), 0 0 20px rgba(224, 132, 3, 0.2), 0 0 40px rgba(224, 132, 3, 0.1);
+            }
+        }
+
+        .gallery-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: 1.5px solid var(--border);
+            position: relative;
+        }
+
+        .gallery-card::after {
+            content: '';
+            position: absolute;
+            inset: -1.5px;
+            border-radius: 25px;
+            background: linear-gradient(135deg, var(--orange), var(--orange-light), #fff700, var(--orange));
+            background-size: 300% 300%;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.35s ease;
+            animation: rotateGradient 3s linear infinite;
+        }
+
+        @keyframes rotateGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            border-color: transparent;
+            animation: electricPulse 1.5s ease-in-out infinite;
+        }
+
+        .gallery-card:hover::after {
+            opacity: 1;
+        }
+
+        .card-img {
+            height: 320px;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding: 30px;
+        }
+
+        .card-img::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 100%);
+            z-index: 1;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        .card-name {
+            font-size: 26px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            font-family: 'Playfair Display', serif;
+            color: white;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .book-link {
+            background: var(--orange);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            transition: all 0.2s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .gallery-card:hover .book-link {
+            background: white;
+            color: var(--orange);
+        }
+
+        .book-link:hover {
+            background: var(--orange-dark);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 30px;
+            padding: 40px;
+            position: relative;
+            animation: modalSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes modalSlide {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: var(--light-bg);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+
+        .close-modal:hover {
+            background: var(--orange);
+            color: white;
+        }
+
+        .modal-place-name {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .modal-tag {
+            color: var(--orange);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .attractions-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .attractions-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .attractions-list li i {
+            color: var(--orange);
+            font-size: 14px;
+        }
+
+        .modal-book-btn {
+            background: var(--orange);
+            color: white;
+            width: 100%;
+            padding: 18px;
+            border-radius: 16px;
+            border: none;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .modal-book-btn:hover {
+            background: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 24px;
+            }
+
+            .dest-hero {
+                padding: 60px 24px 30px;
+            }
+
+            .dest-hero h1 {
+                font-size: 36px;
+            }
+
+            .gallery-grid {
+                padding: 20px 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://res.cloudinary.com/drkgkgiat/image/upload/q_auto/f_auto/v1775567539/Next_TRip_Final_Logo_Square_Size_-_Copy-removebg-preview_bsfsev.png"
+                alt="Next Trip Logo">
+        </div>
+        <div class="header-controls">
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+            <button class="nav-cta" onclick="openBooking('General Inquiry')">Book Now ✦</button>
+        </div>
+    </header>
+
+    <main>
+        <section class="dest-hero">
+            <div class="section-tag">Premium Collection</div>
+            <h1 class="playfair">Explore <span>Incredible</span> India</h1>
+            <p>From the snow-capped Himalayas to the sun-kissed beaches of the south, discover our curated list of 90+
+                breathtaking destinations.</p>
+        </section>
+
+        <div class="gallery-grid">
+            <!-- Kashmir -->
+            <div class="gallery-card" onclick="showDestModal('Kashmir')">
+                <div class="card-img" style="background-image: url('images/kashmir_tour_1775545905366.png');">
+                    <div class="card-content">
+                        <div class="card-name">Kashmir</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Ladakh -->
+            <div class="gallery-card" onclick="showDestModal('Ladakh')">
+                <div class="card-img" style="background-image: url('images/kashmir_tour_1775545905366.png');">
+                    <div class="card-content">
+                        <div class="card-name">Ladakh</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Shimla -->
+            <div class="gallery-card" onclick="showDestModal('Shimla')">
+                <div class="card-img" style="background-image: url('images/kashmir_tour_1775545905366.png');">
+                    <div class="card-content">
+                        <div class="card-name">Shimla</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Manali -->
+            <div class="gallery-card" onclick="showDestModal('Manali')">
+                <div class="card-img" style="background-image: url('images/kashmir_tour_1775545905366.png');">
+                    <div class="card-content">
+                        <div class="card-name">Manali</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Mussoorie -->
+            <div class="gallery-card" onclick="showDestModal('Mussoorie')">
+                <div class="card-img" style="background-image: url('images/munnar_tour_1775546087248.png');">
+                    <div class="card-content">
+                        <div class="card-name">Mussoorie</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Rishikesh -->
+            <div class="gallery-card" onclick="showDestModal('Rishikesh')">
+                <div class="card-img" style="background-image: url('images/indian_temple_1775546710882.png');">
+                    <div class="card-content">
+                        <div class="card-name">Rishikesh</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Varanasi -->
+            <div class="gallery-card" onclick="showDestModal('Varanasi')">
+                <div class="card-img" style="background-image: url('images/indian_temple_1775546710882.png');">
+                    <div class="card-content">
+                        <div class="card-name">Varanasi</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Agra -->
+            <div class="gallery-card" onclick="showDestModal('Agra')">
+                <div class="card-img" style="background-image: url('images/agra_taj_1775546746151.png');">
+                    <div class="card-content">
+                        <div class="card-name">Agra</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Jaipur -->
+            <div class="gallery-card" onclick="showDestModal('Jaipur')">
+                <div class="card-img" style="background-image: url('images/rajasthan_tour_1775545936775.png');">
+                    <div class="card-content">
+                        <div class="card-name">Jaipur</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Jodhpur -->
+            <div class="gallery-card" onclick="showDestModal('Jodhpur')">
+                <div class="card-img" style="background-image: url('images/rajasthan_tour_1775545936775.png');">
+                    <div class="card-content">
+                        <div class="card-name">Jodhpur</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Udaipur -->
+            <div class="gallery-card" onclick="showDestModal('Udaipur')">
+                <div class="card-img" style="background-image: url('images/rajasthan_tour_1775545936775.png');">
+                    <div class="card-content">
+                        <div class="card-name">Udaipur</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Jaisalmer -->
+            <div class="gallery-card" onclick="showDestModal('Jaisalmer')">
+                <div class="card-img" style="background-image: url('images/rajasthan_tour_1775545936775.png');">
+                    <div class="card-content">
+                        <div class="card-name">Jaisalmer</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Goa -->
+            <div class="gallery-card" onclick="showDestModal('Goa')">
+                <div class="card-img" style="background-image: url('images/goa_tour_1775545953325.png');">
+                    <div class="card-content">
+                        <div class="card-name">Goa</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Mumbai -->
+            <div class="gallery-card" onclick="showDestModal('Mumbai')">
+                <div class="card-img" style="background-image: url('images/mumbai_city_1775546762516.png');">
+                    <div class="card-content">
+                        <div class="card-name">Mumbai</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-card" onclick="window.location.href='kerala.html'">
+                <div class="card-img" style="background-image: url('images/kerala_tour_1775545920618.png');">
+                    <div class="card-content">
+                        <div class="card-name">Kerala</div>
+                        <div class="book-link">Explore Kerala</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Ooty -->
+            <div class="gallery-card" onclick="showDestModal('Ooty')">
+                <div class="card-img" style="background-image: url('images/munnar_tour_1775546087248.png');">
+                    <div class="card-content">
+                        <div class="card-name">Ooty</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Kodaikanal -->
+            <div class="gallery-card" onclick="showDestModal('Kodaikanal')">
+                <div class="card-img" style="background-image: url('images/munnar_tour_1775546087248.png');">
+                    <div class="card-content">
+                        <div class="card-name">Kodaikanal</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Munnar -->
+            <div class="gallery-card" onclick="showDestModal('Munnar')">
+                <div class="card-img" style="background-image: url('images/munnar_tour_1775546087248.png');">
+                    <div class="card-content">
+                        <div class="card-name">Munnar</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Andaman -->
+            <div class="gallery-card" onclick="showDestModal('Andaman')">
+                <div class="card-img" style="background-image: url('images/goa_tour_1775545953325.png');">
+                    <div class="card-content">
+                        <div class="card-name">Andaman</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Lakshadweep -->
+            <div class="gallery-card" onclick="showDestModal('Lakshadweep')">
+                <div class="card-img" style="background-image: url('images/goa_tour_1775545953325.png');">
+                    <div class="card-content">
+                        <div class="card-name">Lakshadweep</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Darjeeling -->
+            <div class="gallery-card" onclick="showDestModal('Darjeeling')">
+                <div class="card-img" style="background-image: url('images/munnar_tour_1775546087248.png');">
+                    <div class="card-content">
+                        <div class="card-name">Darjeeling</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Gangtok -->
+            <div class="gallery-card" onclick="showDestModal('Gangtok')">
+                <div class="card-img" style="background-image: url('images/kashmir_tour_1775545905366.png');">
+                    <div class="card-content">
+                        <div class="card-name">Gangtok</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Coorg -->
+            <div class="gallery-card" onclick="showDestModal('Coorg')">
+                <div class="card-img" style="background-image: url('images/munnar_tour_1775546087248.png');">
+                    <div class="card-content">
+                        <div class="card-name">Coorg</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Mysore -->
+            <div class="gallery-card" onclick="alert('Proceeding to book Mysore...')">
+                <div class="card-img" style="background-image: url('images/indian_heritage_1775546727559.png');">
+                    <div class="card-content">
+                        <div class="card-name">Mysore</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Hampi -->
+            <div class="gallery-card" onclick="showDestModal('Hampi')">
+                <div class="card-img" style="background-image: url('images/indian_heritage_1775546727559.png');">
+                    <div class="card-content">
+                        <div class="card-name">Hampi</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Pondicherry -->
+            <div class="gallery-card" onclick="alert('Proceeding to book Pondicherry...')">
+                <div class="card-img" style="background-image: url('images/mumbai_city_1775546762516.png');">
+                    <div class="card-content">
+                        <div class="card-name">Pondicherry</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Mahabalipuram -->
+            <div class="gallery-card" onclick="showDestModal('Mahabalipuram')">
+                <div class="card-img" style="background-image: url('images/indian_heritage_1775546727559.png');">
+                    <div class="card-content">
+                        <div class="card-name">Mahabalipuram</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Rameswaram -->
+            <div class="gallery-card" onclick="showDestModal('Rameswaram')">
+                <div class="card-img" style="background-image: url('images/indian_temple_1775546710882.png');">
+                    <div class="card-content">
+                        <div class="card-name">Rameswaram</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Kanyakumari -->
+            <div class="gallery-card" onclick="showDestModal('Kanyakumari')">
+                <div class="card-img" style="background-image: url('images/indian_temple_1775546710882.png');">
+                    <div class="card-content">
+                        <div class="card-name">Kanyakumari</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Madurai -->
+            <div class="gallery-card" onclick="showDestModal('Madurai')">
+                <div class="card-img" style="background-image: url('images/indian_temple_1775546710882.png');">
+                    <div class="card-content">
+                        <div class="card-name">Madurai</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Tirupati -->
+            <div class="gallery-card" onclick="showDestModal('Tirupati')">
+                <div class="card-img" style="background-image: url('images/indian_temple_1775546710882.png');">
+                    <div class="card-content">
+                        <div class="card-name">Tirupati</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Shirdi -->
+            <div class="gallery-card" onclick="showDestModal('Shirdi')">
+                <div class="card-img" style="background-image: url('images/indian_temple_1775546710882.png');">
+                    <div class="card-content">
+                        <div class="card-name">Shirdi</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Amritsar -->
+            <div class="gallery-card" onclick="showDestModal('Amritsar')">
+                <div class="card-img" style="background-image: url('images/indian_temple_1775546710882.png');">
+                    <div class="card-content">
+                        <div class="card-name">Amritsar</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Spiti Valley -->
+            <div class="gallery-card" onclick="showDestModal('Spiti Valley')">
+                <div class="card-img" style="background-image: url('images/kashmir_tour_1775545905366.png');">
+                    <div class="card-content">
+                        <div class="card-name">Spiti Valley</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Jim Corbett -->
+            <div class="gallery-card" onclick="alert('Proceeding to book Jim Corbett...')">
+                <div class="card-img" style="background-image: url('images/wildlife_safari_1775546695667.png');">
+                    <div class="card-content">
+                        <div class="card-name">Jim Corbett</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Ranthambore -->
+            <div class="gallery-card" onclick="showDestModal('Ranthambore')">
+                <div class="card-img" style="background-image: url('images/wildlife_safari_1775546695667.png');">
+                    <div class="card-content">
+                        <div class="card-name">Ranthambore</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal for Visiting Places -->
+    <div class="modal-overlay" id="destModal">
+        <div class="modal-content">
+            <div class="close-modal" onclick="closeDestModal()">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="modal-place-name playfair" id="modalName">Kashmir</div>
+            <span class="modal-tag">Must-Visit Places</span>
+            <ul class="attractions-list" id="modalList">
+                <!-- Will be populated by JS -->
+            </ul>
+            <button class="modal-book-btn" onclick="openBooking(document.getElementById('modalName').innerText)">Book
+                Now</button>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="modal-overlay" id="bookingModal"
+        style="display: none; align-items: center; justify-content: center; z-index: 3000;">
+        <div class="modal-content" style="max-width: 600px; padding: 40px; text-align: left;">
+            <div class="close-modal" onclick="closeBooking()"><i class="fas fa-times"></i></div>
+            <div class="modal-place-name playfair">Book Your <span style="color:var(--orange)">Dream Trip</span></div>
+            <p style="margin-bottom: 24px; font-size: 14px; color: var(--gray);">Fill in your details — our expert will
+                call you within 30 minutes!</p>
+
+            <div style="display: grid; gap: 15px;">
+                <div>
+                    <label style="font-size: 11px; font-weight: 700; text-transform: uppercase;">Full Name *</label>
+                    <input type="text" id="bookName" placeholder="Your name"
+                        style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--border); margin-top: 5px;">
+                </div>
+                <div>
+                    <label style="font-size: 11px; font-weight: 700; text-transform: uppercase;">Mobile Number *</label>
+                    <input type="tel" id="bookPhone" placeholder="+91 98765 43210"
+                        style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--border); margin-top: 5px;">
+                </div>
+                <div>
+                    <label style="font-size: 11px; font-weight: 700; text-transform: uppercase;">Selected
+                        Destination</label>
+                    <input type="text" id="bookPackage" readonly
+                        style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: #f0f0f0; margin-top: 5px;">
+                </div>
+                <button class="modal-book-btn" onclick="submitBooking()" style="margin-top: 10px;">🎯 Confirm
+                    Booking</button>
+            </div>
+
+            <div id="successMsg" style="display:none; text-align: center; padding-top: 20px;">
+                <div style="font-size: 40px;">🎉</div>
+                <div class="playfair" style="font-size: 24px; font-weight: 700; margin: 10px 0;">Request Received!</div>
+                <p>We'll call you back instantly.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer style="background: var(--dark); color: white; padding: 60px; text-align: center;">
+        <p>&copy; 2024 Next Trip Holidays. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const destinationsData = {
+            "Kashmir": ["Gulmarg", "Pahalgam", "Dal Lake", "Sonamarg", "Shalimar Bagh"],
+            "Ladakh": ["Pangong Lake", "Nubra Valley", "Leh Palace", "Khardung La", "Magnetic Hill"],
+            "Shimla": ["The Ridge", "Jakhu Temple", "Mall Road", "Kufri", "Christ Church"],
+            "Manali": ["Rohtang Pass", "Solang Valley", "Hadimba Devi Temple", "Mall Road", "Old Manali"],
+            "Mussoorie": ["Kempty Falls", "Gun Hill", "Lal Tibba", "Mall Road", "Camel’s Back Road"],
+            "Rishikesh": ["Laxman Jhula", "Triveni Ghat", "Beatles Ashram", "Ram Jhula", "Parmarth Niketan"],
+            "Varanasi": ["Kashi Vishwanath Temple", "Dashashwamedh Ghat", "Sarnath", "Assi Ghat", "Ganga Aarti"],
+            "Agra": ["Taj Mahal", "Agra Fort", "Fatehpur Sikri", "Mehtab Bagh", "Itimad-ud-Daulah"],
+            "Jaipur": ["Amer Fort", "Hawa Mahal", "City Palace", "Jantar Mantar", "Nahargarh Fort"],
+            "Jodhpur": ["Mehrangarh Fort", "Umaid Bhawan Palace", "Jaswant Thada", "Clock Tower", "Mandore Gardens"],
+            "Udaipur": ["City Palace", "Lake Pichola", "Jag Mandir", "Saheliyon-ki-Bari", "Fateh Sagar Lake"],
+            "Jaisalmer": ["Jaisalmer Fort", "Sam Sand Dunes", "Patwon Ki Haveli", "Gadisar Lake", "Tanot Mata Temple"],
+            "Goa": ["Calangute Beach", "Fort Aguada", "Basilica of Bom Jesus", "Dudhsagar Falls", "Anjuna Flea Market"],
+            "Mumbai": ["Gateway of India", "Marine Drive", "Elephanta Caves", "Colaba Causeway", "Siddhivinayak Temple"],
+            "Kerala": ["Munnar Tea Gardens", "Alleppey Backwaters", "Wayanad", "Kochi", "Thekkady"],
+            "Ooty": ["Ooty Lake", "Botanical Garden", "Doddabetta Peak", "Rose Garden", "Nilgiri Mountain Railway"],
+            "Kodaikanal": ["Kodai Lake", "Coaker's Walk", "Bryant Park", "Pillar Rocks", "Silver Cascade Falls"],
+            "Munnar": ["Eravikulam National Park", "Mattupetty Dam", "Echo Point", "Anamudi Peak", "Tea Museum"],
+            "Andaman": ["Radhanagar Beach", "Cellular Jail", "Havelock Island", "Ross Island", "Elephant Beach"],
+            "Lakshadweep": ["Agatti Island", "Bangaram Island", "Minicoy Island", "Kavaratti", "Marine Museum"],
+            "Darjeeling": ["Tiger Hill", "Batasia Loop", "Peace Pagoda", "Darjeeling Himalayan Railway", "Rock Garden"],
+            "Gangtok": ["MG Marg", "Tsomgo Lake", "Rumtek Monastery", "Nathula Pass", "Baba Mandir"],
+            "Coorg": ["Abbey Falls", "Madikeri Fort", "Raja's Seat", "Namdroling Monastery", "Dubare Elephant Camp"],
+            "Mysore": ["Mysore Palace", "Chamundi Hill", "Brindavan Gardens", "St. Philomena's Church", "Mysore Zoo"],
+            "Hampi": ["Virupaksha Temple", "Vittala Temple", "Hampi Bazaar", "Matanga Hill", "Hemakuta Hill"],
+            "Pondicherry": ["Auroville", "Paradise Beach", "French Quarter", "Promenade Beach", "Matrimandir"],
+            "Mahabalipuram": ["Shore Temple", "Five Rathas", "Arjuna's Penance", "Krishna's Butter Ball", "Shore Temple Beach"],
+            "Rameswaram": ["Ramanathaswamy Temple", "Dhanushkodi", "Pamban Bridge", "Agni Tirtham", "APJ Abdul Kalam Memorial"],
+            "Kanyakumari": ["Vivekananda Rock Memorial", "Thiruvalluvar Statue", "Kumari Amman Temple", "Sunset View Point", "Padmanabhapuram Palace"],
+            "Madurai": ["Meenakshi Amman Temple", "Thirumalai Nayakkar Mahal", "Gandhi Memorial Museum", "Koodal Azhagar Temple", "Vaigai Dam"],
+            "Tirupati": ["Venkateswara Temple", "Silathoranam", "Talakona Waterfalls", "Sri Vari Museum", "Akasaganga"],
+            "Shirdi": ["Sai Baba Samadhi Mandir", "Dwarkamai", "Chavadi", "Lendibagh", "Dixit Wada Museum"],
+            "Amritsar": ["Golden Temple", "Wagah Border", "Jallianwala Bagh", "Partition Museum", "Ram Tirath Temple"],
+            "Spiti Valley": ["Key Monastery", "Chandratal Lake", "Kaza", "Hikkim", "Langza"],
+            "Jim Corbett": ["Dhikala Forest Lodge", "Garjiya Devi Temple", "Corbett Falls", "Jhirna Safari Zone", "Bijrani Zone"],
+            "Ranthambore": ["Ranthambore Fort", "Trinetra Ganesh Temple", "Padam Talao", "Raj Bagh Ruins", "Kachida Valley"]
+        };
+
+        function showDestModal(destName) {
+            const modal = document.getElementById('destModal');
+            const nameEl = document.getElementById('modalName');
+            const listEl = document.getElementById('modalList');
+
+            nameEl.innerText = destName;
+            listEl.innerHTML = "";
+
+            const places = destinationsData[destName] || ["Scenic Points", "Local Culture", "Traditional Markets", "Nature Walks", "Hidden Gems"];
+
+            places.forEach(place => {
+                const li = document.createElement('li');
+                li.innerHTML = `<i class="fas fa-location-dot"></i> ${place}`;
+                listEl.appendChild(li);
+            });
+
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDestModal() {
+            document.getElementById('destModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function openBooking(dest) {
+            document.getElementById('bookingModal').style.display = 'flex';
+            document.getElementById('bookPackage').value = dest;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBooking() {
+            document.getElementById('bookingModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function submitBooking() {
+            const name = document.getElementById('bookName').value;
+            const phone = document.getElementById('bookPhone').value;
+            if (!name || !phone) return alert('Please fill Name and Phone');
+
+            document.getElementById('successMsg').style.display = 'block';
+            setTimeout(() => {
+                closeBooking();
+                document.getElementById('successMsg').style.display = 'none';
+            }, 3000);
+        }
+
+        // Close on outside click
+        window.onclick = function (event) {
+            const destModal = document.getElementById('destModal');
+            const bookingModal = document.getElementById('bookingModal');
+            if (event.target == destModal) closeDestModal();
+            if (event.target == bookingModal) closeBooking();
+        }
+    </script>
+</body>
+
+</html>

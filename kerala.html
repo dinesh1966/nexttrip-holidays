@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kerala Tour Packages — Next Trip Holidays</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ============================================================
+   RESET & ROOT VARIABLES
+   ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --orange: #E08403;
+            --orange-light: #FF9F1A;
+            --orange-pale: #FFF5E6;
+            --orange-dark: #B36A02;
+            --white: #FFFFFF;
+            --dark: #1A1A1A;
+            --gray: #6B7280;
+            --light-bg: #F9F9F7;
+            --border: #F0E8E0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        button {
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+        }
+
+        /* ============================================================
+   NAVIGATION
+   ============================================================ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
+            padding: 0 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--orange);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--dark);
+            letter-spacing: 0.4px;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--orange);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(224, 132, 3, 0.3);
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.4),
+                transparent
+            );
+            transition: all 0.6s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(224, 132, 3, 0.5);
+            background: linear-gradient(135deg, var(--orange-light) 0%, var(--orange) 100%);
+        }
+
+        .nav-cta:hover::before {
+            left: 100%;
+        }
+
+        .nav-cta:active {
+            transform: translateY(0) scale(0.98);
+            box-shadow: 0 5px 15px rgba(224, 132, 3, 0.4);
+        }
+
+
+        /* ============================================================
+   ANIMATIONS
+   ============================================================ */
+        /* ============================================================
+   ANIMATIONS
+   ============================================================ */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ============================================================
+   PLACES CARDS
+   ============================================================ */
+        .places-container {
+            padding: 60px 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        @keyframes electricPulse {
+            0%   { box-shadow: 0 0 8px rgba(224,132,3,0.4), 0 0 20px rgba(224,132,3,0.2), 0 0 40px rgba(224,132,3,0.1); }
+            50%  { box-shadow: 0 0 16px rgba(255,159,26,0.8), 0 0 40px rgba(255,159,26,0.4), 0 0 70px rgba(255,159,26,0.2); }
+            100% { box-shadow: 0 0 8px rgba(224,132,3,0.4), 0 0 20px rgba(224,132,3,0.2), 0 0 40px rgba(224,132,3,0.1); }
+        }
+
+        @keyframes rotateGradient {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .place-card {
+            background: white;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.04);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            display: flex;
+            flex-direction: column;
+            border: 1.5px solid var(--border);
+            animation: fadeInUp 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) backwards;
+            position: relative;
+        }
+
+        .place-card::after {
+            content: '';
+            position: absolute;
+            inset: -1.5px;
+            border-radius: 33px;
+            background: linear-gradient(135deg, var(--orange), var(--orange-light), #fff700, var(--orange));
+            background-size: 300% 300%;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.35s ease;
+            animation: rotateGradient 3s linear infinite;
+        }
+
+        .place-card:hover {
+            transform: translateY(-15px) scale(1.01);
+            border-color: transparent;
+            animation: electricPulse 1.5s ease-in-out infinite;
+        }
+
+        .place-card:hover::after {
+            opacity: 1;
+        }
+
+        .place-card:hover .place-img img {
+            transform: scale(1.1);
+        }
+
+        .place-img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.2), transparent);
+        }
+
+        .place-content {
+            padding: 22px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .place-tag {
+            font-size: 11px;
+            font-weight: 800;
+            color: var(--orange);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .place-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            color: var(--dark);
+            line-height: 1.2;
+        }
+
+        .place-desc {
+            color: var(--gray);
+            font-size: 13px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            flex-grow: 1;
+        }
+
+        .place-actions {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-view-pkg {
+            flex: 1;
+            background: var(--orange-pale);
+            color: var(--orange);
+            border: 1px solid rgba(224, 132, 3, 0.1);
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .btn-view-pkg:hover {
+            background: var(--orange);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-book-now {
+            flex: 1;
+            background: var(--orange);
+            color: white;
+            border: none;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(224, 132, 3, 0.2);
+            text-align: center;
+        }
+
+        .btn-book-now:hover {
+            background: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ============================================================
+   MODALS
+   ============================================================ */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(15px);
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.4s ease;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 550px;
+            border-radius: 36px;
+            padding: 50px;
+            position: relative;
+            transform: translateY(40px) scale(0.95);
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 44px;
+            height: 44px;
+            background: var(--light-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--gray);
+            transition: all 0.2s;
+            border: 1px solid var(--border);
+        }
+
+        .modal-close:hover {
+            background: var(--orange);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 38px;
+            margin-bottom: 25px;
+            color: var(--dark);
+            font-weight: 800;
+        }
+
+        .visit-places-list {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+
+        .visit-places-list li {
+            padding: 18px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .visit-places-list li i {
+            color: var(--orange);
+            font-size: 18px;
+        }
+
+        .visit-places-list li:last-child {
+            border: none;
+        }
+
+        /* Booking Form */
+        .booking-form {
+            display: grid;
+            gap: 24px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .form-group label {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--orange);
+        }
+
+        .form-group input, .form-group select {
+            padding: 16px 20px;
+            border: 2px solid var(--border);
+            border-radius: 14px;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.2s;
+            background: var(--light-bg);
+        }
+
+        .form-group input:focus {
+            border-color: var(--orange);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(224, 132, 3, 0.1);
+        }
+
+        .btn-submit {
+            background: var(--orange);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 16px;
+            font-weight: 800;
+            font-size: 16px;
+            margin-top: 15px;
+            transition: all 0.3s;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(224, 132, 3, 0.25);
+        }
+
+        .btn-submit:hover {
+            background: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .places-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 0 24px; }
+            .nav-links, .nav-cta { display: none; }
+            .places-container { padding: 60px 24px; }
+            .places-grid { grid-template-columns: 1fr; }
+            .place-content { padding: 30px; }
+            .modal-content { padding: 30px; }
+        }
+
+        .back-nav {
+            max-width: 1400px;
+            margin: 90px auto -40px;
+            padding: 0 60px;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: white;
+            color: var(--dark);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-decoration: none;
+        }
+
+        .btn-back:hover {
+            background: var(--orange);
+            color: white;
+            border-color: var(--orange);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(224, 132, 3, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .back-nav { padding: 0 24px; margin-top: 90px; margin-bottom: -20px; flex-wrap: wrap; }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <a href="index.html">Next Trip<span>Holidays</span></a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="destinations.html">Destinations</a></li>
+            <li><a href="international.html">International</a></li>
+            <li><a href="#">Packages</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <button class="nav-cta" onclick="openBooking('General Inquiry')">Book Your Trip</button>
+    </nav>
+
+
+    <div class="back-nav">
+        <a href="index.html" class="btn-back">
+            <i class="fas fa-home"></i> Back to Home
+        </a>
+        <a href="destinations.html" class="btn-back">
+            <i class="fas fa-arrow-left"></i> Back to Destinations
+        </a>
+    </div>
+
+    <main class="places-container">
+        <div class="places-grid">
+            <!-- Munnar -->
+            <div class="place-card">
+                <div class="place-img">
+                    <img src="images/munnar_tour_1775546087248.png" alt="Munnar">
+                </div>
+                <div class="place-content">
+                    <span class="place-tag">Hill Station</span>
+                    <h2 class="place-title">Munnar</h2>
+                    <p class="place-desc">Famous for its rolling tea carpeted hills, misty mountains, and refreshing atmosphere. A paradise for nature lovers.</p>
+                    <div class="place-actions">
+                        <button class="btn-view-pkg" onclick="showPlaces('Munnar')">View Place</button>
+                        <button class="btn-book-now" onclick="openBooking('Munnar Tour')">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alleppey -->
+            <div class="place-card">
+                <div class="place-img">
+                    <img src="images/kerala_tour_1775545920618.png" alt="Alleppey">
+                </div>
+                <div class="place-content">
+                    <span class="place-tag">Backwaters</span>
+                    <h2 class="place-title">Alleppey</h2>
+                    <p class="place-desc">The Venice of the East. Experience the signature houseboat stay through serene backwaters and lagoons.</p>
+                    <div class="place-actions">
+                        <button class="btn-view-pkg" onclick="showPlaces('Alleppey')">View Place</button>
+                        <button class="btn-book-now" onclick="openBooking('Alleppey Houseboat')">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cochin -->
+            <div class="place-card">
+                <div class="place-img">
+                    <img src="images/kerala_tour_1775545920618.png" alt="Cochin">
+                </div>
+                <div class="place-content">
+                    <span class="place-tag">Port City</span>
+                    <h2 class="place-title">Cochin</h2>
+                    <p class="place-desc">A melting pot of cultures, famous for Chinese fishing nets, Fort Kochi, and historical colonial architecture.</p>
+                    <div class="place-actions">
+                        <button class="btn-view-pkg" onclick="showPlaces('Cochin')">View Place</button>
+                        <button class="btn-book-now" onclick="openBooking('Cochin Heritage Tour')">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thekkady -->
+            <div class="place-card">
+                <div class="place-img">
+                    <img src="images/wildlife_safari_1775546695667.png" alt="Thekkady">
+                </div>
+                <div class="place-content">
+                    <span class="place-tag">Wildlife</span>
+                    <h2 class="place-title">Thekkady</h2>
+                    <p class="place-desc">Home to the Periyar National Park. Explore spice plantations, wildlife safaris, and bamboo rafting.</p>
+                    <div class="place-actions">
+                        <button class="btn-view-pkg" onclick="showPlaces('Thekkady')">View Place</button>
+                        <button class="btn-book-now" onclick="openBooking('Thekkady Wildlife Safari')">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thiruvananthapuram -->
+            <div class="place-card">
+                <div class="place-img">
+                    <img src="images/indian_temple_1775546710882.png" alt="Thiruvananthapuram">
+                </div>
+                <div class="place-content">
+                    <span class="place-tag">Capital & Culture</span>
+                    <h2 class="place-title">Thiruvananthapuram</h2>
+                    <p class="place-desc">Visit the majestic Padmanabhaswamy Temple and the pristine beaches of Kovalam near the capital city.</p>
+                    <div class="place-actions">
+                        <button class="btn-view-pkg" onclick="showPlaces('Thiruvananthapuram')">View Place</button>
+                        <button class="btn-book-now" onclick="openBooking('Thiruvananthapuram & Kovalam Tour')">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wayanad -->
+            <div class="place-card">
+                <div class="place-img">
+                    <img src="images/munnar_tour_1775546087248.png" alt="Wayanad">
+                </div>
+                <div class="place-content">
+                    <span class="place-tag">Eco-Tourism</span>
+                    <h2 class="place-title">Wayanad</h2>
+                    <p class="place-desc">Lush green forests, waterfalls, and ancient caves. Perfect for trekking and experiencing ethnic tribes.</p>
+                    <div class="place-actions">
+                        <button class="btn-view-pkg" onclick="showPlaces('Wayanad')">View Place</button>
+                        <button class="btn-book-now" onclick="openBooking('Wayanad Nature Trip')">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Package Detail Modal -->
+    <div id="pkgModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('pkgModal')">&times;</span>
+            <h2 id="modalTitle" class="modal-title">Places to Visit</h2>
+            <ul id="placesList" class="visit-places-list">
+                <!-- Dynamic Content -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal('bookingModal')">&times;</span>
+            <h2 class="modal-title">Book Your Package</h2>
+            <form class="booking-form" onsubmit="event.preventDefault(); alert('Booking Request Sent! We will contact you soon.'); closeModal('bookingModal')">
+                <div class="form-group">
+                    <label>Selected Destination</label>
+                    <input type="text" id="bookingDest" readonly>
+                </div>
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" placeholder="Enter your phone" required>
+                </div>
+                <div class="form-group">
+                    <label>Number of People</label>
+                    <input type="number" min="1" value="1" required>
+                </div>
+                <button type="submit" class="btn-submit">Send Inquiry</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-logo">Next Trip<span>Holidays</span></div>
+        <p>&copy; 2025 Next Trip Holidays. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const packageData = {
+            'Munnar': [
+                'Eravikulam National Park',
+                'Tea Museum',
+                'Mattupetty Dam',
+                'Echo Point',
+                'Attukad Waterfalls'
+            ],
+            'Alleppey': [
+                'Houseboat Overnight Stay',
+                'Alappuzha Beach',
+                'Vembanad Lake',
+                'Marari Beach',
+                'Pathiramanal Island'
+            ],
+            'Cochin': [
+                'Fort Kochi & Chinese Nets',
+                'Mattancherry Palace',
+                'Jewish Synagogue',
+                'Marine Drive',
+                'Lulu Mall Shopping'
+            ],
+            'Thekkady': [
+                'Periyar Lake Boating',
+                'Elephant Junction',
+                'Spice Plantation Tour',
+                'Thekkady Night Trek',
+                'Kalaripayattu Show'
+            ],
+            'Thiruvananthapuram': [
+                'Padmanabhaswamy Temple',
+                'Kovalam Beach',
+                'Napier Museum',
+                'Shangumugham Beach',
+                'Vizhinjam Lighthouse'
+            ],
+            'Wayanad': [
+                'Banasura Sagar Dam',
+                'Edakkal Caves',
+                'Soochipara Waterfalls',
+                'Pookode Lake',
+                'Chembra Peak'
+            ]
+        };
+
+        function showPlaces(place) {
+            const modal = document.getElementById('pkgModal');
+            const title = document.getElementById('modalTitle');
+            const list = document.getElementById('placesList');
+
+            title.innerText = `Places to Visit in ${place}`;
+            list.innerHTML = '';
+
+            packageData[place].forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${item}`;
+                list.appendChild(li);
+            });
+
+            modal.classList.add('active');
+        }
+
+        function openBooking(pkgName) {
+            const modal = document.getElementById('bookingModal');
+            document.getElementById('bookingDest').value = pkgName;
+            modal.classList.add('active');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+
+        // Close modal on click outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+
+</html>

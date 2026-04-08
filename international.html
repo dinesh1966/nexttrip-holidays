@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>International Destinations — Next Trip Holidays</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --orange: #E08403;
+            --orange-light: #FF9F1A;
+            --orange-pale: #FFF5E6;
+            --orange-dark: #B36A02;
+            --white: #FFFFFF;
+            --dark: #1A1A1A;
+            --gray: #6B7280;
+            --light-bg: #F9FAFB;
+            --border: #E5E7EB;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--light-bg);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--orange);
+        }
+
+        /* Hero */
+        .dest-hero {
+            padding: 80px 60px 40px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .section-tag {
+            background: var(--orange-pale);
+            color: var(--orange);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 6px 16px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .dest-hero h1 {
+            font-size: 54px;
+            font-weight: 900;
+            margin-bottom: 20px;
+        }
+
+        .dest-hero span {
+            color: var(--orange);
+        }
+
+        /* Grid */
+        .gallery-grid {
+            padding: 40px 60px 100px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .gallery-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid var(--border);
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            border-color: var(--orange);
+        }
+
+        .card-img {
+            height: 380px;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding: 30px;
+        }
+
+        .card-img::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 40%, transparent 100%);
+            z-index: 1;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        .card-name {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            font-family: 'Playfair Display', serif;
+            color: white;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .book-link {
+            background: var(--orange);
+            color: white;
+            padding: 10px 22px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            transition: all 0.2s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .gallery-card:hover .book-link {
+            background: white;
+            color: var(--orange);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 30px;
+            padding: 40px;
+            position: relative;
+            animation: modalSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes modalSlide {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: var(--light-bg);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 1px solid var(--border);
+        }
+
+        .close-modal:hover {
+            background: var(--orange);
+            color: white;
+        }
+
+        .modal-place-name {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .modal-tag {
+            color: var(--orange);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .attractions-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .attractions-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .attractions-list li i {
+            color: var(--orange);
+            font-size: 14px;
+        }
+
+        .modal-book-btn {
+            background: var(--orange);
+            color: white;
+            width: 100%;
+            padding: 18px;
+            border-radius: 16px;
+            border: none;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .modal-book-btn:hover {
+            background: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 24px;
+            }
+
+            .dest-hero {
+                padding: 60px 24px 30px;
+            }
+
+            .dest-hero h1 {
+                font-size: 36px;
+            }
+
+            .gallery-grid {
+                padding: 20px 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://res.cloudinary.com/drkgkgiat/image/upload/q_auto/f_auto/v1775567539/Next_TRip_Final_Logo_Square_Size_-_Copy-removebg-preview_bsfsev.png"
+                alt="Next Trip Logo">
+        </div>
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
+    </header>
+
+    <main>
+        <section class="dest-hero">
+            <div class="section-tag">Global Adventures</div>
+            <h1 class="playfair">Discover the <span>World</span></h1>
+            <p>From the neon lights of Tokyo to the romantic canals of Venice, embark on an unforgettable international
+                journey with curated packages from Coimbatore.</p>
+        </section>
+
+        <div class="gallery-grid" id="intlGrid">
+            <!-- Populated via JS for efficiency -->
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="destModal">
+        <div class="modal-content">
+            <div class="close-modal" onclick="closeDestModal()"><i class="fas fa-times"></i></div>
+            <div class="modal-place-name playfair" id="modalName">Europe</div>
+            <span class="modal-tag">Must-Visit Attractions</span>
+            <ul class="attractions-list" id="modalList"></ul>
+            <button class="modal-book-btn" onclick="openBooking(document.getElementById('modalName').innerText)">Book
+                Now</button>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div class="modal-overlay" id="bookingModal"
+        style="display: none; align-items: center; justify-content: center; z-index: 3000;">
+        <div class="modal-content" style="max-width: 600px; padding: 40px; text-align: left;">
+            <div class="close-modal" onclick="closeBooking()"><i class="fas fa-times"></i></div>
+            <div class="modal-place-name playfair">Book Your <span style="color:var(--orange)">Dream Trip</span></div>
+            <p style="margin-bottom: 24px; font-size: 14px; color: var(--gray);">Fill in your details — our expert will
+                call you within 30 minutes!</p>
+
+            <div style="display: grid; gap: 15px;">
+                <div>
+                    <label style="font-size: 11px; font-weight: 700; text-transform: uppercase;">Full Name *</label>
+                    <input type="text" id="bookName" placeholder="Your name"
+                        style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--border); margin-top: 5px; outline: none;">
+                </div>
+                <div>
+                    <label style="font-size: 11px; font-weight: 700; text-transform: uppercase;">Mobile Number *</label>
+                    <input type="tel" id="bookPhone" placeholder="+91 98765 43210"
+                        style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--border); margin-top: 5px; outline: none;">
+                </div>
+                <div>
+                    <label style="font-size: 11px; font-weight: 700; text-transform: uppercase;">Destination</label>
+                    <input type="text" id="bookPackage" readonly
+                        style="width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: #f0f0f0; margin-top: 5px; outline: none;">
+                </div>
+                <button class="modal-book-btn" onclick="submitBooking()" style="margin-top: 10px;">🎯 Confirm
+                    Booking</button>
+            </div>
+
+            <div id="successMsg" style="display:none; text-align: center; padding-top: 20px;">
+                <div style="font-size: 40px;">🎉</div>
+                <div class="playfair" style="font-size: 24px; font-weight: 700; margin: 10px 0;">Request Received!</div>
+                <p>We'll call you back instantly.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer style="background: var(--dark); color: white; padding: 60px; text-align: center;">
+        <p>&copy; 2024 Next Trip Holidays. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const intlData = {
+            "Europe": { img: "images/europe_tour_1775546052863.png", spots: ["Switzerland", "Paris", "Venice", "London", "Rome"] },
+            "Singapore": { img: "images/singapore_tour_1775546012732.png", spots: ["Marina Bay Sands", "Sentosa Island", "Gardens by the Bay", "Universal Studios", "Merlion Park"] },
+            "Malaysia": { img: "images/malaysia_tour_1775546028000.png", spots: ["Petronas Towers", "Genting Highlands", "Batu Caves", "Langkawi", "Melaka"] },
+            "Dubai": { img: "images/dubai_tour_1775545997585.png", spots: ["Burj Khalifa", "Dubai Mall", "Palm Jumeirah", "Desert Safari", "Miracle Garden"] },
+            "Vietnam": { img: "images/vietnam_tour_1775546040000.png", spots: ["Ha Long Bay", "Ho Chi Minh City", "Hoi An", "Da Nang", "Cu Chi Tunnels"] },
+            "Bali": { img: "images/bali_tour_1775546028396.png", spots: ["Uluwatu Temple", "Ubud", "Seminyak", "Tanah Lot", "Mount Batur"] },
+            "Philippines": { img: "images/maldives_tour_1775546069197.png", spots: ["El Nido", "Boracay", "Manila", "Chocolate Hills", "Palawan"] },
+            "Cambodia": { img: "images/indian_heritage_1775546727559.png", spots: ["Angkor Wat", "Phnom Penh", "Koh Rong", "Siem Reap", "Tonle Sap"] },
+            "China": { img: "images/rajasthan_tour_1775545936775.png", spots: ["Great Wall", "Forbidden City", "Shanghai Bund", "Terracotta Army", "Yangshuo"] },
+            "Japan": { img: "images/kashmir_tour_1775545905366.png", spots: ["Tokyo", "Kyoto", "Mount Fuji", "Osaka", "Nara"] },
+            "Hong Kong": { img: "images/mumbai_city_1775546762516.png", spots: ["Victoria Peak", "Disneyland", "Tsim Sha Tsui", "Ocean Park", "Lantau Island"] },
+            "Australia": { img: "images/goa_tour_1775545953325.png", spots: ["Sydney Opera House", "Great Barrier Reef", "Melbourne", "Gold Coast", "Uluru"] },
+            "South Korea": { img: "images/kashmir_tour_1775545905366.png", spots: ["Seoul", "Jeju Island", "Busan", "DMZ", "Gyeongbokgung Palace"] },
+            "Turkey": { img: "images/indian_temple_1775546710882.png", spots: ["Istanbul", "Cappadocia", "Pamukkale", "Ephesus", "Antalya"] }
+        };
+
+        const grid = document.getElementById('intlGrid');
+        Object.keys(intlData).forEach(name => {
+            const card = document.createElement('div');
+            card.className = "gallery-card";
+            card.onclick = () => showModal(name);
+            card.innerHTML = `
+                <div class="card-img" style="background-image: url('${intlData[name].img}');">
+                    <div class="card-content">
+                        <div class="card-name">${name}</div>
+                        <div class="book-link">View Packages</div>
+                    </div>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+
+        function showModal(name) {
+            const modal = document.getElementById('destModal');
+            document.getElementById('modalName').innerText = name;
+            const list = document.getElementById('modalList');
+            list.innerHTML = "";
+            intlData[name].spots.forEach(spot => {
+                const li = document.createElement('li');
+                li.innerHTML = `<i class="fas fa-location-dot"></i> ${spot}`;
+                list.appendChild(li);
+            });
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeDestModal() {
+            document.getElementById('destModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function openBooking(dest) {
+            document.getElementById('bookingModal').style.display = 'flex';
+            document.getElementById('bookPackage').value = dest;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBooking() {
+            document.getElementById('bookingModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function submitBooking() {
+            const name = document.getElementById('bookName').value;
+            const phone = document.getElementById('bookPhone').value;
+            if (!name || !phone) return alert('Please fill missing fields');
+
+            document.getElementById('successMsg').style.display = 'block';
+            setTimeout(() => {
+                closeBooking();
+                document.getElementById('successMsg').style.display = 'none';
+            }, 3000);
+        }
+
+        window.onclick = (e) => {
+            if (e.target.id == 'destModal') closeDestModal();
+            if (e.target.id == 'bookingModal') closeBooking();
+        }
+    </script>
+</body>
+
+</html>
